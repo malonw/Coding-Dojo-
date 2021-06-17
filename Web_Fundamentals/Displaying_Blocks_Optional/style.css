@@ -1,0 +1,39 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#page{
+    background-color: tan;
+    width: 870px;
+    margin: 20px auto;
+}
+h1 {
+    text-align: center;
+    display: inline-block;
+}
+#header {
+    margin: 20px 182px 20px 182px;
+    display: inline-block;
+}
+img{
+    border-style: solid; 
+    border-width: 2px; 
+}
+
+.Crow1 {
+    display: inline-block;
+    margin: 0 0 0 40px;
+}
+.Crow2 {
+    display: inline-block;
+    margin: 0 0 0 40px;
+}
+.Crow3 {
+    display: inline-block;
+    margin: 0 0 0 40px;
+}
+.Crow4 {
+    display: inline-block;
+    margin: 0 0 0 40px;
+}

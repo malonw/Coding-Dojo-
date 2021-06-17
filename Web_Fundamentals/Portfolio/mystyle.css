@@ -1,0 +1,186 @@
+    /* * { */
+    
+    body {
+        width: 960px;
+    }
+    
+    header {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+        width: 960px;
+    }
+    
+    h1 {
+        align-items: center;
+        display: inline-flex;
+        margin: 20px;
+        font-family: cursive;
+    }
+    
+    h2 {
+        margin: 20px;
+    }
+    
+    #main {
+        width: 970px;
+        min-height: 800px;
+        background-color: rgb(63 42 55);
+        background-image: radial-gradient( rgba(198 194 208 / 34%),rgb(63 42 55));
+    }
+    
+    .image {
+        width: 400px;
+        margin: 20px;
+        display: inline-flex;
+        vertical-align: top;
+    }
+    
+    .image img {
+        width: 400px;
+        border: 7px solid rgb(201, 207, 212);
+    }
+    
+    .about {
+        width: 480px;
+        margin: 20px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .about a {
+        color: black;
+    }
+    
+    .title {
+        background: linear-gradient(to bottom, hsl(0, 0%, 90%) 10%, rgba(138,138,145,1) 40%, rgba(138,138,145,1) 53%, hsl(0, 0%, 90%) 100%);
+        color: white;
+        width: 480px;
+        height: 40px;
+        font-size: 20px;
+        font-family: monospace;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    #main p {
+        margin: 0px;
+    }
+    
+    .text {
+        background-color: white;
+        width: 460px;
+        height: 215px;
+        margin: 0;
+        padding: 10px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    
+    #content {
+        display: inline-flex;
+        width: 970px;
+        min-height: 600px;
+    }
+    
+    .mode {
+        margin: 20px 40px 0 30px;
+        width: 250px;
+    }
+    
+    .mode img {
+        width: 250px;
+        align-content: center;
+    }
+    
+    .title1 {
+        background: linear-gradient(to bottom, hsl(0, 0%, 90%) 10%, rgba(138,138,145,1) 40%, rgba(138,138,145,1) 53%, hsl(0, 0%, 90%) 100%);
+
+        color: white;
+        width: 270px;
+        height: 40px;
+        font-size: 20px;
+        font-family: monospace;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .text1 {
+        width: 250px;
+        height: 300px;
+        background-color: rgb(231, 216, 216);
+        padding: 10px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    
+    .icons {
+        width: 250px;
+        background-color: rgb(231, 216, 216);
+        padding: 10px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    
+    .tech {
+        width: 270px;
+        height: 150px;
+    }
+    /* Style for Tech icons */
+    
+    .tech img {
+        width: 40px;
+    }
+    
+    .button {
+        background-color: hsl(152deg 32% 37%);
+        border: solid 1px black;
+        box-shadow: 0 8px 6px -6px black;
+        text-align: center;
+        border-radius: 10px;
+        
+        padding: 5px;
+        margin: 10px 69px;
+        width: max-content;
+    }
+    
+    .button a {
+        text-decoration: none;
+        color: white;
+    }
+    
+    footer {
+        display: inline;
+        align-content: center;
+        background-color: rgb(231, 216, 216);
+    }
+    
+    .contact {
+        width: 970px;
+        display: inline-flex;
+        justify-content: center;
+        background-color: rgb(231, 216, 216);
+    }
+    
+    .contact p {
+        border-left: solid 1px black;
+        align-content: center;
+        padding-left: 10px;
+    }
+    
+    .contact a {
+        display: inline;
+        align-content: center;
+        text-decoration: none;
+        color: black;
+        padding-right: 10px;
+    }
+    
+    .links {
+        background-color: rgb(231, 216, 216);
+        text-align: center;
+        padding-top: 20px;
+    }
+    
+    .links img {
+        width: 20px;
+        color: black;
+    }

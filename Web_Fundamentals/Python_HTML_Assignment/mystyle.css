@@ -1,0 +1,230 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#wrapper {
+    width: 970px;
+    background-color: #245076;
+    height: auto;
+    margin: 0 0 20px 0;
+}
+
+header {
+    width: 970px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+
+/* Python Image settings */
+
+header img {
+    width: 50%;
+}
+
+
+/* Text Size */
+
+header ul {
+    display: inline-flex;
+    list-style-type: none;
+    margin: 10px 10px 0;
+    color: white;
+    font-size: small;
+}
+
+header a {
+    justify-content: space-between;
+    color: yellow;
+    margin: 10px;
+    font-size: smaller
+}
+
+
+/* Search Bar */
+
+.bar {
+    width: 235px;
+}
+
+.block {
+    width: 195px;
+    height: 28px;
+    padding: 13px;
+    border-radius: 10px;
+    background-color: #444444;
+    display: inline-block;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+button {
+    background-color: #245076;
+    color: white;
+    box-shadow: 8px 0 6px -6px white;
+}
+
+.bar input[type=text] {
+    padding: 6px;
+    border: 1px solid black;
+    margin-left: 24px;
+    width: 116px;
+    text-align: center;
+}
+
+
+/* Horizontal Nav Bar */
+
+.navbar {
+    background-color: #437dad;
+    margin: 0 85px;
+    width: 800px;
+    display: inline-flex;
+    border-radius: 5px;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+.navbar ul {
+    display: inline-flex;
+    justify-content: space-between;
+    list-style-type: none;
+    width: inherit;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+}
+
+
+/* Vertical Nav */
+
+nav {
+    display: inline-flex;
+    align-items: flex-start;
+    color: white;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    margin: 8px 3px 7px;
+    text-align: center;
+    width: 150px;
+    font-size: smaller;
+}
+
+nav li::before {
+    content: ">>";
+    color: yellow;
+    display: inline-block;
+    width: 2em;
+    margin-left: -1em
+}
+
+nav li a {
+    color: white;
+}
+
+
+/* section under Horizontal Nav Bar */
+
+.column2 {
+    text-align: center;
+    margin: 10px 50px 15px 30px;
+}
+
+.column2 ul {
+    list-style-type: none;
+    display: inline;
+}
+
+.column2 ul li {
+    color: yellow;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+
+/* Section below Blue area */
+
+.about {
+    text-align: center;
+    column-width: 325px;
+    width: 970px;
+}
+
+.col1 {
+    width: 300ox;
+    margin: 0 80px;
+    border-top: 4px solid #73a7d5;
+}
+
+.col1 p {
+    vertical-align: top;
+    margin: 0px;
+    padding: 10px;
+}
+
+.col1 ul {
+    list-style: square;
+}
+
+.col1 a {
+    text-decoration: none;
+    color: #87a4bd;
+    font-size: small;
+}
+
+.col2 {
+    width: 300px;
+    margin: 0 80px;
+    border-top: 4px solid #73a7d5;
+}
+
+.col2 p {
+    vertical-align: top;
+    margin: 0px;
+    padding: 10px;
+}
+
+.col2 small {
+    color: #87a4bd;
+}
+
+.col2 ul {
+    list-style-type: square;
+    margin: 0;
+}
+
+.col2 a {
+    text-decoration: none;
+    color: #87a4bd;
+    font-size: small;
+}
+
+.links {
+    text-align: center;
+    background-color: #245076;
+    height: 100px;
+    width: 970px;
+    vertical-align: bottom;
+}
+
+.links ul {
+    list-style-type: none;
+    color: #87a4bd;
+    display: inline-flex;
+    margin: 60px;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    margin: 0 30px;
+    color: #87a4bd;
+}

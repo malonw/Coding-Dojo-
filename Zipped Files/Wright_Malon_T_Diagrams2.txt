@@ -1,0 +1,66 @@
+Code Snippet 1
+
+Var				Value			output
+______________________________________________________________________
+hello				Dojo			hello 
+							Dojo
+
+
+Code Snippet 2
+
+hello				15			hello
+result				15			result is 15
+
+Code snippet 3
+
+numPlus				num 			num is 15
+result				3			result is 3
+
+Code snippet 4
+
+num				15			15
+num2				10			10
+result				10			10
+							15
+
+Code Snippet 5
+
+num				15			15
+num2				10			20
+result				10			20
+							15
+
+Code Snippet 6
+
+num				3			num is 3
+y				6				
+result				8			result is 8
+
+Code Snippet 7
+
+num1, num2			2, 3			5
+num1, num2			3, 5			8
+
+Code Snippet 8
+
+num1, num2			2, 3			5
+num1, num2			3, 5			8			
+
+Code Snippet 9
+
+num1, num2			2, 3			sum is 5
+num1, num2			3, 5			sum is 8
+sum				5, 8
+result				5, 8			result is 13
+
+Code Snippet 10
+
+num1, num2			2, 3	
+sum				5			sum is 5
+result				5+14			result is 19 
+
+
+
+
+
+	

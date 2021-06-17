@@ -1,0 +1,32 @@
+Code Snippet 1
+
+Var				Value
+_________________________________________________
+auntContactInfo			Paul 
+				Smith 
+				12534 Main St
+				St. Louis
+				MO
+				12345
+
+
+
+Code Snippet 2
+
+Var				Value
+__________________________________________________
+produce				apples
+				oranges
+frozen				brocoli
+				ice cream
+				hashbrowns
+
+
+Code Snippet 3
+
+Var				Value
+__________________________________________________
+movieLibrary			Bambi
+				E.T.  ==>Beetlejuice
+				Toy Story
+				Zoro
