@@ -1,0 +1,9 @@
+*{
+    padding: 0;
+    margin: 0 auto;
+}
+img{
+    border: 1px solid black;
+    margin: 1em;
+    width: 20%;
+}

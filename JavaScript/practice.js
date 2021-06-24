@@ -156,7 +156,7 @@ function foo(x, y) {
             console.log(i*j);
         } 
     }
-
+}
 var z= foo(3,3 );
 console.log(z);
 console.log('-----');

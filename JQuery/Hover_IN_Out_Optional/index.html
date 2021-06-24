@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Optional Hover In/Out">
+    <link rel="stylesheet" href="mystyle.css">
+    <title>Optional Hover In/Out Assignment</title>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("div img").hover(
+                function(){
+                    $(this).attr("src", "./images/stormtroopocat.png")
+                },
+                function(){
+                    $(this).attr("src", "./images/oktobercat.png")
+                }
+            )
+        })
+    </script>
+</head>
+<body>
+<h1>Hover in, Hover out</h1>
+<div>
+    <img src="./images/oktobercat.png" alt="image" />
+    <img src="./images/oktobercat.png" alt="image" />
+    <img src="./images/oktobercat.png" alt="image" />
+    <img src="./images/oktobercat.png" alt="image" />
+    <img src="./images/oktobercat.png" alt="image" />
+    <img src="./images/oktobercat.png" alt="image" />
+    <img src="./images/oktobercat.png" alt="image" />
+    <img src="./images/oktobercat.png" alt="image" />
+</div>
+
+
+</body>
+</html>
