@@ -1,0 +1,11 @@
+*{
+
+    padding: 0;
+}
+.jumbotron, .content{
+    padding: 5% 10%;
+
+}
+.content{
+    display: flex;
+}

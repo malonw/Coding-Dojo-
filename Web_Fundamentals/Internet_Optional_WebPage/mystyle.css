@@ -1,74 +1,172 @@
 * {
     margin: 0 auto;
     padding: 0;
-    outline: 1px solid red;
 }
 
-header {
-    display: flex;
-    align-items: flex-end;
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 header img {
     width: 10%;
-    margin: 0 0 0 20px;
+    margin: 0 0 -80px 0px;
 }
 
 header h1 {
-    margin-left: 20px;
+    margin-left: 165px;
 }
 
-h2 {
+header span, .column1 p span {
+    color: #0085E0;
+}
+
+header h2 {
     background: linear-gradient(to bottom, rgba(23, 101, 176, 0.94) 0%, rgb(94 146 166) 50%, rgba(23, 101, 176, 0.94) 100%);
     color: white;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
 }
 
 .content {
     display: flex;
-
+    background: linear-gradient(to bottom, #E6E6E6, #FFFFFF);
 }
 
 .column1 {
-    flex: 1;
-    height: 19em;
-    
+    height: 20em;
+    width: 12em;
+    margin: 1em;
 }
 
 .column1 .button1 {
-    background-color: rgba(23, 101, 176, 0.94);
+    background-color: #3C7AAD;
     border-radius: 2px;
     color: white;
     height: 30px;
+    width: 13em;
     margin: 5px;
 }
 
 .column1 .button2 {
-    background-color: orangered;
+    background-color: #ED9A2F;
     border-radius: 2px;
     color: white;
     height: 30px;
+    width: 13em;
     margin: 5px;
 }
-.ad{
-    background-image: url(images/ninja.png), url(images/ninja.png);
-    background-position: center;
-    background-repeat: no-repeat;
+
+.ad {
+    background-image: url(images/ad_background.png);
+    color: white;
+    height: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    margin-top: 1em;
 }
+
+.column1 hr{
+    margin: 1em 0;
+    
+}
+.ad img {
+    width: 7%;
+    position: absolute;
+    top: 30em;
+    left: 3em;
+}
+
+.ad h3 {
+    padding: 1em;
+}
+
+.ad .button3 {
+    background-color: #2CC7DF;
+    color: white;
+    width: 12em;
+    height: 2em;
+    margin-bottom: 2em;
+    border-radius: 5px;
+}
+
 .column2 {
     flex: 2;
 }
-.header{
-    height: 100px;
-    display: inline-flex;
-    justify-content: space-between;
+
+.main {
+    display: flex;
     border-bottom: 2px solid grey;
 }
-.header .home{
-    width: 3%;
+
+.header1 {
+    height: 100px;
+    display: inline-flex;
+    margin-top: 1em;
+    color: #22649e;
+}
+
+.header1 .home {
+    margin-right: 1em;
     height: 23%;
 }
-.header .phone{
-    width: 10%;
-    padding: 6em;
-    
+
+.main .phone {
+    width: 4%;
+    height: fit-content;
+    margin: 1em 0 0 67%;
 }
+
+.header2 {
+    padding: 1em;
+}
+
+.header2 h2 {
+    color: #00C0DF;
+}
+
+.header2 p {
+    flex: 3;
+}
+
+.column2 ul, .column2 ol {
+    padding: 0 1em 1em 3em;
+}
+
+.column2 p span, .column2 ul li span, .column2 ol li span {
+    color: #0097AF;
+    font-weight: bold;
+}
+
+.column2 h3, .Big h3 {
+    color: #22649e;
+}
+
+.centerimg {
+    display: flex;
+    width: 30%;
+}
+
+.sub {
+    padding-left: 2em;
+}
+
+.Big {
+    display: flex;
+    border: 9px solid #0085E0;
+    padding: 1em;
+}
+
+.Big img {
+    width: 15%;
+    padding: 1em;
+}
+
+
+.Big a {
+    color: #0097AF;
+    text-decoration: none;
+}
+
