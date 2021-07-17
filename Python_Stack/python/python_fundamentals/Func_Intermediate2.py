@@ -30,8 +30,7 @@ students = [
 
 def iterateDictionary(students):
     for value in students:
-        print("first_name -", value.get("first_name"),
-              ",", "last_name -", value.get("last_name"))
+        print("first_name -", value.get("first_name"),",", "last_name -", value.get("last_name"))
 
 
 # s]h)doutput: (it's okay if each key-value pair ends up on 2 separate lines;

@@ -1,3 +1,41 @@
+class Store:
+
+    def __init__ (self, name, products=[]):
+        self.name = name
+        self.prods=products
+        self.prod = products.append
+    
+        
+    def add_product(self, new_product):
+        self.new_product = new_product
+        self.prod(new_product)
+        
+    
+    def sell_product(self,id):
+        # self.products.pop(id)    
+        pass
+
+    def inflation(self,percent_increase):
+        # self.percent_increased = percent_increase
+        # self.percent_increased = Products.is_increased
+        pass
+
+    def set_clearance(self,catagory,percent_discount):
+        # self.percent_discount=percent_discount
+        # if self.catagory == catagory:
+        #     Products.price = Products.price - (Products.price * percent_discount)
+        pass
+
+
+Toy=Store("RcVheicles")
+Toy.add_product("RcBoat")
+Toy.add_product("RcSub")
+Toy.add_product("RcMini")
+Toy.add_product("RcCars")
+
+
+
+
 
 class Products:
     def __init__(self, name, price, catagory):
