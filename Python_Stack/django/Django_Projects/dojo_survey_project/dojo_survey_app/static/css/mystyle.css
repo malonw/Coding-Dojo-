@@ -1,0 +1,25 @@
+.Survey {
+    width: 20em;
+    border: 4px solid blue;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 1em;
+}
+
+#Online,
+#Oakland,
+#SanJose {
+    margin: 1em;
+}
+
+.Comments {
+    display: grid;
+}
+
+#submit {
+    margin: 1em 0 0 14em;
+    background-color: rgba(17, 132, 136, 0.637);
+    color: white;
+    box-shadow: 4px 4px 2px -2px black;
+}

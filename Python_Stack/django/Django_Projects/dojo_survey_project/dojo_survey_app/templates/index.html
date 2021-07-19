@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learning Forms in django" />
+    <title>Dojo Survey</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+
+</head>
+
+<body>
+    <div class="Survey">
+        <form action="">
+            {% csrf_token %}
+            <label for="name">Your Name:</label><input type="text" id="name" name="name"><br>
+            <label for="FavDojo">Dojo Location</label>
+            <input type="radio" id="Online" name="Dojo" value="Online">
+            <label for="Online">Online Dojo</label><br>
+            <input type="radio" id="Oakland" name="Dojo" value="Oakland">
+            <label for="Oakland">Oakland Dojo</label><br>
+            <input type="radio" id="SanJose" name="Dojo" value="SanJose">
+            <label for="SanJose">San Jose</label><br><br>
+            <label for="favorite">Favorite Languages</label><br>
+            <input type="checkbox" name="django" id="django" value="django">
+            <label for="django">Django</label>
+            <input type="checkbox" name="Python" id="Python" value="Python">
+            <label for="Python">Python</label>
+            <input type="checkbox" name="JavaScript" id="JavaScript" value="JavaScript">
+            <label for="JavaScript">JavaScript</label>
+
+            <div class="Comments">
+                <label for="comments">Comments (Optional)</label>
+                <textarea name="comments" id="comments"></textarea>
+            </div>
+            <input type="submit" name="submit" id="submit">
+        </form>
+    </div>
+</body>
+
+</html>
