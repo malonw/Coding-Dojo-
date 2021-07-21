@@ -13,10 +13,10 @@
 
 <body>
     <div class="Survey">
-        <form action="">
+        <form action="results" method="POST">
             {% csrf_token %}
             <label for="name">Your Name:</label><input type="text" id="name" name="name"><br>
-            <label for="FavDojo">Dojo Location</label>
+            <label for="FavDojo">Dojo Location</label><br>
             <input type="radio" id="Online" name="Dojo" value="Online">
             <label for="Online">Online Dojo</label><br>
             <input type="radio" id="Oakland" name="Dojo" value="Oakland">
@@ -35,7 +35,7 @@
                 <label for="comments">Comments (Optional)</label>
                 <textarea name="comments" id="comments"></textarea>
             </div>
-            <input type="submit" name="submit" id="submit">
+            <input type="submit" value="submit">
         </form>
     </div>
 </body>
