@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Word Generator</title>
+    <title>Random String Generator</title>
     <style>
-        p{
+        h2{
             border: 3px solid black;
-            width: 100px;
+            width: 400px;
+            padding: 4px;
         }
     </style>
+
 </head>
 <body>
     <div>
-        <h3>Random Word (attempt #{{id}})</h3>
-        <p>display</p>
-        <form>
-            <input type="submit" value="Generate">
-        </form>
+        
+        <h3>Random 14 character String (Attempt #{{request.session.id}})</h3>
+        <h2>{{rword}}</h2>
+        <a href="/random"><button type="button">Generate</button></a>
+        <a href="/random/reset"><button type="reset">Reset</button></a>
+
     </div>
 </body>
 </html>
