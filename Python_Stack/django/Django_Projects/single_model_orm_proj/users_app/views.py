@@ -3,7 +3,7 @@ from .models import users
 
 def index(request):
     context = {
-        "all_users": users.objects.all()
+        "all_users": User.objects.all()
     }
     return render(request, "index.html", context)
 
