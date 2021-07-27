@@ -1,4 +1,4 @@
 from books_authors_app.models import *
 Author.objects.create(fname="William",lname="Shakespeare")
 from books_authors_app.models import Books
-Books.objects.create(title="C Sharp", desc="Book about C@")
+Books.objects.create(title="C Sharp", desc="Book about C#")
