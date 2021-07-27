@@ -1,0 +1,27 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+.listing {
+    height: 8em;
+}
+
+hr {
+    border-top: 3px solid black;
+}
+
+.addauser {
+    display: grid;
+    justify-content: center;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+}
