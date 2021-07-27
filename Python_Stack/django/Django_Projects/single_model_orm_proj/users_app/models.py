@@ -8,8 +8,9 @@ class users(models.Model):
     age=models.IntegerField(default=0)
     created_at=DateTimeField(auto_now_add=(True))
     updated_at=DateTimeField(auto_now=True)
-    # def __repr__(self):
-    #     return f"({self.id}){self.first_name}{self.last_name}{self.age} "
+    def __repr__(self):
+        
+        return f"({self.id}){self.first_name}{self.last_name}{self.age} "
         
 
 # Create your models here.
