@@ -8,30 +8,7 @@
     <title>Users and Templates</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/mystyles1.css' %}">
-    <style>
-        header {
-            display: flex;
-            justify-content: center;
-        }
-        
-        .listing {
-            height: 8em;
-        }
-        
-        hr {
-            border-top: 3px solid black;
-        }
-        
-        .addauser {
-            display: grid;
-            justify-content: center;
-        }
-        
-        h2 {
-            display: flex;
-            justify-content: center;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -39,17 +16,38 @@
         <h1>All the Users</h1>
     </header>
     <div class="listing">
-        <ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
             {% for user in all_users %}
-            <li>{{user.first_name}}</li>
+            <tbody>
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.first_name}}{{user.last_name}}</td>
+                    <td>{{user.email_address}}</td>
+                    <td>{{user.age}} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- <ul>
+            {% for user in all_users %}
+            <li>{{user.first_name}}, {{user.last_name}}</li>
             {% endfor %}
-        </ul>
+        </ul> -->
     </div>
     <hr>
     <h2>Add a User</h2>
 
     <div class="addauser">
-        <form>
+        <form action="/create" method="POST">
             <label for="first_name">First Name</label>
             <input type="text" id="first_name" name="first_name">
             <label for="last_name">Last Name</label>
