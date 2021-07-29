@@ -37,17 +37,13 @@
             </tbody>
         </table>
 
-        <!-- <ul>
-            {% for user in all_users %}
-            <li>{{user.first_name}}, {{user.last_name}}</li>
-            {% endfor %}
-        </ul> -->
     </div>
     <hr>
     <h2>Add a User</h2>
 
     <div class="addauser">
-        <form action="/create" method="POST">
+        <form action="create" method="POST">
+            {% csrf_token %}
             <label for="first_name">First Name</label>
             <input type="text" id="first_name" name="first_name">
             <label for="last_name">Last Name</label>
