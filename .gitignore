@@ -145,3 +145,5 @@ cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 /sports_orm
+Python_Stack/django/django_orm/Orm_Projects/sports_orm
+
