@@ -1,0 +1,9 @@
+header{
+    display: flex;
+    justify-content: space-around;
+}
+.newshow{
+    display: grid;
+    width: 260px;
+    margin-left: 20em;
+}
