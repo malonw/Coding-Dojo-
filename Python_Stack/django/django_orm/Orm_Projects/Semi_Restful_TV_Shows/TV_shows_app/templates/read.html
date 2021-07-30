@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,19 +10,21 @@
 
     </style>
 </head>
+
 <body>
     <header>
         <h1>TV Show Details</h1>
-        <a href="shows.html">Go Back</a>
+        <a href="tvshows">Go Back</a>
     </header>
+    <h3>{{shows.id}}</h3>
     <ul>
-        <li>Title: {{Show.title}}</li>
-        <li>Network: {{Show.network}}</li>
-        <li>Release Date: {{Show.release_date}}</li>
-        <li>Description: {{Show.descript}}</li>
+        <li>Title: {{shows.title}}</li><br>
+        <li>Network: {{shows.network}}</li><br>
+        <li>Release Date: {{shows.release_date}}</li><br>
+        <li>Description: {{shows.descript}}</li>
     </ul>
-
-    <p>Last Updated: {{Show.updated_at}}</p>
+    <p>Last Updated: {{shows.updated_at}}</p>
 
 </body>
+
 </html>
