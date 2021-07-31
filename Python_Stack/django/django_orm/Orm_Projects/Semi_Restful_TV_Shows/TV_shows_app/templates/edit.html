@@ -12,11 +12,22 @@
 <body>
     <header>
         <h1>Edit a Show</h1>
-        <a href="shows.html">Go Back</a>
+        <a href="tvshows.html">Go Back</a>
     </header>
     <div class="newshow">
+        <h2>Current Show Info</h2>
+        <h3>{{shows.id}}</h3>
+        <ul>
+            <li>Title: {{shows.title}}</li><br>
+            <li>Network: {{shows.network}}</li><br>
+            <li>Release Date: {{shows.release_date}}</li><br>
+            <li>Description: {{shows.descript}}</li>
+        </ul>
+        <p>Last Updated: {{shows.updated_at}}</p>
+        <hr>
+        <h2>To Update Show</h2>
         <form action="update" method="POST">
-            {% csrf token %}
+            {% csrf_token %}
             <label for="title">Title</label>
             <input type="text" name="title" id="title">
             <label for="network">Network</label>
@@ -27,10 +38,9 @@
             <input type="text" name="descript" id="descript">
             <input type="submit" name="update" id="update" value="update">
         </form>
-        <form action="read.html" method="GET">
-            {% csrf token %}
-        <a href="read.html">Go to Show</a>
-        </form>
+            
+        <a href="/read/{{show.id}}">Go to Show</a>
+        
     </div>
 </body>
 </html>
