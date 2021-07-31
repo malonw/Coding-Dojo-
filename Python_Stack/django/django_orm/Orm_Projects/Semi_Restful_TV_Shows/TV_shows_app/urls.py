@@ -6,7 +6,7 @@ urlpatterns = [
     path('tvshows', views.tvshows),
     path('create', views.new),
     path('<int:id>/edit', views.edit),
-    path('edit/<int:id>', views.update),
+    path('<int:id>/update', views.update),
     path('read/<int:id>', views.read_one),
     path('<id>/delete', views.delete),
 ]

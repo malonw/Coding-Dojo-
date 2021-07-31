@@ -15,6 +15,17 @@
         <a href="tvshows.html">Go Back</a>
     </header>
     <div class="newshow">
+        <h2>Current Show Info</h2>
+        <h3>{{shows.id}}</h3>
+        <ul>
+            <li>Title: {{shows.title}}</li><br>
+            <li>Network: {{shows.network}}</li><br>
+            <li>Release Date: {{shows.release_date}}</li><br>
+            <li>Description: {{shows.descript}}</li>
+        </ul>
+        <p>Last Updated: {{shows.updated_at}}</p>
+        <hr>
+        <h2>To Update Show</h2>
         <form action="update" method="POST">
             {% csrf_token %}
             <label for="title">Title</label>

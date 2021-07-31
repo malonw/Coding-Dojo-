@@ -14,7 +14,7 @@ def new(request):
     if request.POST == "POST":
         Show.objects.create(
             title=request.POST['title'],
-            network=request.POST['netwrok'],
+            network=request.POST['network'],
             release_date=request.POST['release_date'],
             descript=request.POST['descript']
         )
@@ -33,7 +33,7 @@ def edit(request, id):
 def update(request, id):
     update = Show.objects.get(id=id)
     update.title = request.POST['title'],
-    update.network = request.POST['netwrok'],
+    update.network = request.POST['network'],
     update.release_date = request.POST['release_date'],
     update.descript = request.POST['descript'],
     update.save()
