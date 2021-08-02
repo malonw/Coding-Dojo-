@@ -26,7 +26,7 @@ def new(request):
                 release_date=request.POST['release_date'],
                 descript=request.POST['descript'],
             )
-        messages.success(request, 'TV Show Created')
+            messages.success(request, 'TV Show Created')
             # Show.objects.last()
         return redirect('/tvshows')
 
@@ -54,7 +54,7 @@ def update(request, id):
         update.release_date = request.POST['release_date']
         update.descript = request.POST['descript']
         update.save()
-    messages.success(request, 'TV Show Updated')
+        messages.success(request, 'TV Show Updated')
 
     return redirect('/')
 
