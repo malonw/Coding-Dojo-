@@ -1,9 +1,21 @@
-header{
-    display: flex;
-    justify-content: space-around;
-}
-.newshow{
-    display: grid;
-    width: 260px;
-    margin-left: 20em;
-}
+    header {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .newshow {
+        display: grid;
+        width: 258px;
+        margin-left: 20em;
+    }
+    
+    .updateshow {
+        display: grid;
+        width: 258px;
+        margin-left: 20em;
+    }
+    
+    .messages {
+        min-height: fit-content;
+        font-weight: bold;
+    }

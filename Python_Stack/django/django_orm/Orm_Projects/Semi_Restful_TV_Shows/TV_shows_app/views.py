@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
+from django.contrib import messages
 from .models import Show
 
 
@@ -11,16 +12,26 @@ def tvshows(request):
 
 
 def new(request):
-    if request.POST == "POST":
-        Show.objects.create(
-            title=request.POST['title'],
-            network=request.POST['network'],
-            release_date=request.POST['release_date'],
-            descript=request.POST['descript']
-        )
+        errors = Show.objects.validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect ('/create')
+    
+        else:
+
+            Show.objects.create(
+                title=request.POST['title'],
+                network=request.POST['network'],
+                release_date=request.POST['release_date'],
+                descript=request.POST['descript'],
+            )
+        messages.success(request, 'TV Show Created')
+            # Show.objects.last()
+        return redirect('/tvshows')
+
+def create(request):
     return render(request, 'create.html')
-
-
 
 
 def edit(request, id):
@@ -31,12 +42,20 @@ def edit(request, id):
 
 
 def update(request, id):
-    update = Show.objects.get(id=id)
-    update.title = request.POST['title'],
-    update.network = request.POST['network'],
-    update.release_date = request.POST['release_date'],
-    update.descript = request.POST['descript'],
-    update.save()
+    errors = Show.objects.validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect (id+'/edit/')
+    else:
+        update = Show.objects.get(id=id)
+        update.title = request.POST['title']
+        update.network = request.POST['network']
+        update.release_date = request.POST['release_date']
+        update.descript = request.POST['descript']
+        update.save()
+    messages.success(request, 'TV Show Updated')
+
     return redirect('/')
 
 

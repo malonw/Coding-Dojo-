@@ -7,29 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Shows</title>
     <style>
-        table{
-            min-height:10em;
+        table {
+            min-height: 10em;
             width: 30em;
             border: 1px solid black;
-
         }
-        table td{
+        
+        table td {
             border: 1px solid black;
         }
+        
         .edit {
             border-left: 2px solid black;
             border-right: 2px solid black;
             padding: 3px;
-
         }
-
+        
         .delete {
             padding: 3px;
             margin: o 3px;
         }
-        .actions{
+        
+        .actions {
             display: flex;
             margin: .5em;
+        }
+        
+        .actions a {
+            margin: 5px;
         }
     </style>
 </head>
@@ -53,10 +58,10 @@
                 <td>{{show.title}} </td>
                 <td>{{show.network}} </td>
                 <td>{{show.release_date}} </td>
-                <td class ="actions">
-                    <a href="read/{{show.id}}/">Show</a>
-                    <a href="{{show.id}}/edit">Edit</a>
-                    <a href="{{show.id}}/delete">Delete</a>
+                <td class="actions">
+                    <a href="/read/{{show.id}}">Show</a>
+                    <a href="/{{show.id}}/edit">Edit</a>
+                    <a href="/{{show.id}}/delete">Delete</a>
                 </td>
             </tr>
             {% endfor %}

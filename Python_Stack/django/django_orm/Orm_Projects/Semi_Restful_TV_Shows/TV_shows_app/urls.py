@@ -4,9 +4,12 @@ from . import views
 urlpatterns = [
     path('', views.tvshows),
     path('tvshows', views.tvshows),
-    path('create', views.new),
-    path('<int:id>/edit', views.edit),
-    path('<int:id>/update', views.update),
-    path('read/<int:id>', views.read_one),
+    path('create', views.create),
+    path('new', views.new),
+    path('<id>/edit', views.edit),
+    path('update/<id>/edit', views.edit),
+    path('update/<id>', views.update),
+    path('read/<id>', views.read_one),
+    path('read/<id>/edit', views.edit),
     path('<id>/delete', views.delete),
 ]
