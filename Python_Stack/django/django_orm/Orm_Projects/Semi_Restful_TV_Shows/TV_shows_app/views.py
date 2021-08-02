@@ -1,3 +1,4 @@
+from django.contrib.messages.api import error
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from .models import Show
@@ -12,12 +13,13 @@ def tvshows(request):
 
 
 def new(request):
+    if request.method == 'POST':
         errors = Show.objects.validator(request.POST)
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect ('/create')
-    
+            return redirect('/create', errors)
+
         else:
 
             Show.objects.create(
@@ -26,9 +28,10 @@ def new(request):
                 release_date=request.POST['release_date'],
                 descript=request.POST['descript'],
             )
-        messages.success(request, 'TV Show Created')
+            messages.success(request, 'TV Show Created')
             # Show.objects.last()
         return redirect('/tvshows')
+
 
 def create(request):
     return render(request, 'create.html')
@@ -42,21 +45,21 @@ def edit(request, id):
 
 
 def update(request, id):
-    errors = Show.objects.validator(request.POST)
-    if len(errors) > 0:
-        for key, value in errors.items():
-            messages.error(request, value)
-        return redirect (id +'/edit/')
-    else:
-        update = Show.objects.get(id=id)
-        update.title = request.POST['title']
-        update.network = request.POST['network']
-        update.release_date = request.POST['release_date']
-        update.descript = request.POST['descript']
-        update.save()
-    messages.success(request, 'TV Show Updated')
-
-    return redirect('/')
+    if request.method == 'POST':
+        errors = Show.objects.validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect("/" + id + '/edit', errors)
+        else:
+            update = Show.objects.get(id=id)
+            update.title = request.POST['title']
+            update.network = request.POST['network']
+            update.release_date = request.POST['release_date']
+            update.descript = request.POST['descript']
+            update.save()
+            messages.success(request, 'TV Show Updated')
+        return redirect('/tvshows')
 
 
 def read_one(request, id):
@@ -66,8 +69,7 @@ def read_one(request, id):
     return render(request, 'read.html', show_query)
 
 
-
 def delete(request, id):
-    dele=Show.objects.get(id=id)
+    dele = Show.objects.get(id=id)
     dele.delete()
     return redirect('/')
