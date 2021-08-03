@@ -16,6 +16,7 @@ class ShowManager(models.Manager):
             errors["descript"] = "Description should be more than 10 characters."
         # if postData['release_date'] > date.today:
         #     errors["release_date"] = "Release date cannot be in the Future!"
+        # does not work throws error
         return errors
 
 
@@ -25,6 +26,7 @@ class Show(models.Model):
     release_date = models.DateField()
     # release_date = models.DateField(
     #     validators=[MaxValueValidator(limit_value=date.today)])
+    # works but breaks
     descript = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -39,5 +41,5 @@ class Show(models.Model):
     #             check=models.Q(release_date__lte=Now()),
     #             name='release_date_cannot_be_in_future_dated'
     #         )
-    #     ]
+    #     ]  works but breaks error is above
 # Create your models here.
