@@ -15,17 +15,17 @@ def register(request):
     if request.method == "GET":
         return redirect("/index.html")
     if request.method == "POST":
-        if request.session['email'] == User.objects.filter(username=request.POST['email']):
+        if request.session['email'] == User.objects.filter('email'):
             return HttpResponse("You have already Registered!")
-        
-        password = request.POST['password']
-        User.objects.create(
-            fname = request.POST['fname'],
-            lname = request.POST['lname'],
-            email = request.POST['email'],
-            pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+        else:
+            password = request.POST['password']
+            User.objects.create(
+                fname = request.POST['fname'],
+                lname = request.POST['lname'],
+                email = request.POST['email'],
+                pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
-        )
+            )
     return redirect('/success')
 
 def success(request):
