@@ -1,5 +1,3 @@
-import re
-from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib import messages
@@ -15,55 +13,55 @@ def register(request):
     if request.method == "GET":
         return redirect("/index.html")
     if request.method == "POST":
-        password = request.POST['password']
-        password2 = request.POST['password2']
-        if password == password2:
-            if User.objects.filter(email='email').exists():
-                messages.error(request, "You have already Registered!")
-                return redirect('/')
-            else:
-                User.objects.create(
-                    fname=request.POST['fname'],
-                    lname=request.POST['lname'],
-                    email=request.POST['email'],
-                    hash1=bcrypt.hashpw(
-                        password.encode(), bcrypt.gensalt()).decode()
-                )
-                return redirect('/success')
+        errors = User.objects.user_validator(request.POST)
+        user1 = User.objects.filter(email=request.POST['email'])
+        if user1.exists():
+            messages.error(request, "You have already Registered!")
+            return redirect('/')
 
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value, extra_tags=key)
+            return redirect('/')
         else:
-            messages.error(request, "Password do not match. Try again.")
-        return redirect("/")
+            user1 = User.objects.create(
+                fname=request.POST['fname'],
+                lname=request.POST['lname'],
+                email=request.POST['email'],
+                password=bcrypt.hashpw(
+                    request.POST['password'].encode(), bcrypt.gensalt()).decode()
+            )
+            request.session['log_user_id'] = user1.id
+            return redirect('/success')
+
     return redirect("/")
 
 
-def validate_login(request):
-    user = User.objects.filter(email='email')
-    if bcrypt.checkpw(request.POST['password'].encode(), user.pw_hash.encode()):
-        print("Passwords match!")
-        return redirect('/login')
-    else:
-        print("Failed Password")
-        return redirect('/')
-
-
 def login(request):
-    if User.objects.filter(email=request.POST['email']).exists():
-        logged_user = User.objects.get(id=id)
-
+    user_list = User.objects.filter(email=request.POST['email'])
+    if user_list:
+        logged_user = user_list[0]
         if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
-            request.session['email'] = logged_user.id
+            request.session['log_user_id'] = logged_user.id
             return redirect('/success')
+        else:
+            messages.error(request, "Invalid email or password.")
+            return redirect('/')
+    messages.error(request, "Email does not exist.")
+    return redirect('/')
 
+
+def logout(request):
+    request.session.clear()
     return redirect('/')
 
 
 def success(request):
     if request.method == "GET":
         return redirect('/')
-    # temporary
-    context = {
-        'all': User.objects.all()
-    }
-    return render(request, 'success.html', context)
+    else:
+        context = {
+            'user': User.objects.get(id=request.session['log_user_id'])
+        }
+        return render(request, 'success.html', context)
 # Create your views here.
