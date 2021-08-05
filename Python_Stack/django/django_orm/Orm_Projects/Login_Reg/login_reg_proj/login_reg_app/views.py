@@ -57,9 +57,6 @@ def logout(request):
 
 
 def success(request):
-    if request.method == "GET":
-        return redirect('/')
-    else:
         context = {
             'user': User.objects.get(id=request.session['log_user_id'])
         }
