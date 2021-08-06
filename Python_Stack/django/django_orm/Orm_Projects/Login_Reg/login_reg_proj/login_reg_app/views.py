@@ -43,7 +43,7 @@ def login(request):
         logged_user = user_list[0]
         if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
             request.session['log_user_id'] = logged_user.id
-            return redirect('/success')
+            return redirect('/redirect_view')
         else:
             messages.error(request, "Invalid email or password.")
             return redirect('/')
@@ -55,6 +55,10 @@ def logout(request):
     request.session.clear()
     return redirect('/')
 
+
+def redirect_view(request):
+    response = redirect('/redirect-success')
+    return response
 
 def success(request):
         context = {
