@@ -1,10 +1,6 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 import re
 
-from django.db.models.base import ModelStateFieldsCacheDescriptor
 
 
 class UserManager(models.Manager):
@@ -24,6 +20,16 @@ class UserManager(models.Manager):
         if postData['password'] != postData['password2']:
             errors['password'] = "Passwords do not match"
         return errors
+    def login_validator(self, postData):
+        errors = {}
+        EMAIL_REGEX = re.compile(
+            r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+
+        if not EMAIL_REGEX.match(postData['email']):
+            errors['email'] = "Invalid email address!"
+        if len(postData["password"]) < 8:
+            errors['password'] = "Password must be at least 8 characters."
+        return errors
 
 
 class User(models.Model):
@@ -36,16 +42,16 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = UserManager()
     def __repr__(self):
-        return f"<User Object: {self.id}, {self.fname}, {self.lname}, {self.books}>"
+        return f"<User Object: {self.id}, {self.fname}, {self.lname}>"
 
 class BookManager(models.Manager):
     def book_validator(self, postData):
-        errors = {}
-        if len(postData['title']) < 1:
-            errors['title'] = "Title Required."
+        errors1 = {}
+        if len(postData['title']) <= 0:
+            errors1['title'] = "Title Required."
         if len(postData['desc']) < 5:
-            errors['desc'] = "Decription must be more than 5 characters."
-
+            errors1['desc'] = "Decription must be more than 5 characters."
+        return errors1
 
 
 class Book(models.Model):
