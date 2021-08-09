@@ -9,7 +9,7 @@ import bcrypt
 def landing(request):
     return render(request, 'landing.html')
 
-
+# registration
 def register(request):
     if request.method == "GET":
         return redirect("/landing.html")
@@ -63,10 +63,11 @@ def books(request):
     context = {
         'user': User.objects.get(id=request.session['log_user_id']),
         'user_books': Book.objects.all(),
-        # 'liked_books':Book.user_favorites.through.objects.get(id=request.session['log_user_id']),
+        'liked_books':Book.user_favorites.through.objects.get(id=request.session['log_user_id']),
     }
-# second or third users can't log in due to error with liked books query(does not exist)
     return render(request, 'books.html', context)
+
+# adding a book
 
 def add_book(request):
     if request.method == 'POST':
@@ -96,6 +97,8 @@ def favorite(request, id):
             add_fav.user_favorites.add(user)
         return redirect('/books')
 
+# details page without access to editing
+
 def details(request, id):
     detail_query = {
                 'books': Book.objects.get(id=id),
@@ -105,7 +108,7 @@ def details(request, id):
     }
     return render(request,'details.html', detail_query)
 
-    #Edit query 
+    #Edit a book 
 
 def edit(request, id):
     edit_query = {
@@ -115,7 +118,16 @@ def edit(request, id):
     }
     return render(request, 'book_detail.html', edit_query)
 
-# to update a Book Description
+# showing only favorites of a user
+
+def my_favs(request):
+    my_favs_query = {
+        'user': User.objects.get(id=request.session['log_user_id']),
+        'user_books': Book.objects.all(),
+    }
+    return render(request,'my_favorites.html', my_favs_query)
+
+# update a Book function 
 
 def update(request, id):
     if request.method == 'POST':
