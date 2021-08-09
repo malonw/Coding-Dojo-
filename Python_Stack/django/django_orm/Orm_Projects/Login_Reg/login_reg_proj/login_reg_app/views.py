@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout
 from django.contrib import messages
 from .models import User
 import bcrypt
@@ -16,7 +15,8 @@ def register(request):
         errors = User.objects.user_validator(request.POST)
         user1 = User.objects.filter(email=request.POST['email'])
         if user1.exists():
-            messages.error(request, "You have already Registered!")
+            messages.error(
+                request, "This email is already Registered!", extra_tags='register')
             return redirect('/')
 
         if len(errors) > 0:
@@ -45,9 +45,10 @@ def login(request):
             request.session['log_user_id'] = logged_user.id
             return redirect('/redirect_view')
         else:
-            messages.error(request, "Invalid email or password.")
+            messages.error(request, "Invalid email or password.",
+                           extra_tags='login')
             return redirect('/')
-    messages.error(request, "Email does not exist.")
+    messages.error(request, "Email does not exist.", extra_tags='login')
     return redirect('/')
 
 
@@ -60,9 +61,10 @@ def redirect_view(request):
     response = redirect('/redirect-success')
     return response
 
+
 def success(request):
-        context = {
-            'user': User.objects.get(id=request.session['log_user_id'])
-        }
-        return render(request, 'success.html', context)
+    context = {
+        'user': User.objects.get(id=request.session['log_user_id'])
+    }
+    return render(request, 'success.html', context)
 # Create your views here.

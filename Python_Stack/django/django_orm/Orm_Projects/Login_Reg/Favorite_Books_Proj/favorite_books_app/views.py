@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Book, User
@@ -20,8 +19,7 @@ def register(request):
         errors = User.objects.user_validator(request.POST)
         user1 = User.objects.filter(email=request.POST['email'])
         if user1.exists():
-            messages.error(request, "This email is already Registered!",
-                           extra_tags='register')
+            messages.error(request, "This email is already Registered!", extra_tags='register')
             return redirect('/')
 
         if len(errors) > 0:

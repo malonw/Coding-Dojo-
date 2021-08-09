@@ -60,6 +60,10 @@
                     {% endif %}
                     {% endfor %}
                     {% endif %}
+                    {% if messages %} {% for message in messages %} {% if 'register' in message.tags %}
+                    <p>{{message}}</p>
+                    {% endif %} {% endfor %} {% endif %}
+
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" class="form-control">
@@ -90,7 +94,10 @@
             <div class="col-md-6">
                 <h2> Login </h2>
                 <form action="/login" method="POST" class="form-group" name="login">
-                    {% csrf_token %}
+                    {% csrf_token %} {% if messages %} {% for message in messages %}
+                    {% if 'login' in message.extra_tags %}
+                    <p>{{message}}</p>
+                    {% endif %} {% endfor %} {% endif %}
                     <label for="email" class="form-lable">Email:</label>
                     <input type="email" name="email" class="form-control">
                     <label for="password" class="form-label">Password:</label>
