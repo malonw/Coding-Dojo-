@@ -16,6 +16,7 @@ Including another URLconf
 from django.urls import path, include
 
 urlpatterns = [
-    path('',include('dojo_reads_app.urls')),
-    path('login_reg_proj/', include('login_reg_app.urls'))
+
+    path('login_reg_app/', include('login_reg_app.urls')),
+    path('', include('dojo_reads_app.urls')),
 ]

@@ -58,13 +58,13 @@ def logout(request):
 
 
 def redirect_view(request):
-    response = redirect('/dojo_reads_app/')
+    response = redirect('/dojo_reads_app/home')
     return response
 
 
-def success(request):
-    context = {
-        'user': User.objects.get(id=request.session['log_user_id'])
-    }
-    return render(request, 'success.html', context)
+# def success(request):
+#     context = {
+#         'user': User.objects.get(id=request.session['log_user_id'])
+#     }
+#     return render(request, 'success.html', context)
 # Create your views here.
