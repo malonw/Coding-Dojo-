@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'login_reg_app',
     'dojo_reads_app',
     'django.contrib.admin',
     'django.contrib.auth',

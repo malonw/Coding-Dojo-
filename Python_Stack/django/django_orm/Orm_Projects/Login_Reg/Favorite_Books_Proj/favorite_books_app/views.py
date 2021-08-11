@@ -116,10 +116,12 @@ def favorite(request, id):
 
 
 def details(request, id):
+    this_book = Book.objects.get(id=id)
     detail_query = {
-        'books': Book.objects.get(id=id),
+        'books': this_book,
         'user': User.objects.get(id=request.session['log_user_id']),
-        'liked': Book.user_favorites.through.objects.exclude(id=request.session['log_user_id']),
+        'liked':this_book.user_favorites.all()
+        # 'liked': Book.user_favorites.through.objects.exclude(id=request.session['log_user_id']),
 
     }
     return render(request, 'details.html', detail_query)

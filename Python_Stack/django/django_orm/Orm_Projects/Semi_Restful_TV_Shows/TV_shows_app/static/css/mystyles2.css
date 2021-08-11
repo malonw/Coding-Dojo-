@@ -19,3 +19,33 @@
         min-height: fit-content;
         font-weight: bold;
     }
+    
+    table {
+        min-height: 10em;
+        width: 30em;
+        border: 1px solid black;
+    }
+    
+    table td {
+        border: 1px solid black;
+    }
+    
+    .edit {
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+        padding: 3px;
+    }
+    
+    .delete {
+        padding: 3px;
+        margin: o 3px;
+    }
+    
+    .actions {
+        display: flex;
+        margin: .5em;
+    }
+    
+    .actions a {
+        margin: 5px;
+    }

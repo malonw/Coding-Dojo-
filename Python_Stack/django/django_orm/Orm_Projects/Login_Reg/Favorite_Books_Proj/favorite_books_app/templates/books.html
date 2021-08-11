@@ -64,8 +64,8 @@
             </div>
             <div class="col-md-6">
                 <h2>All Books </h2>
-                {% for book in user_books %}
-                <ul>{% if user.id == book.uploaded_by.id %}
+                <ul>
+                    {% for book in user_books %} {% if user.id == book.uploaded_by.id %}
                     <li><a href="/edit/{{book.id}}">{{ book.title }}</a></li>
                     {% else %}
                     <li><a href="/details/{{book.id}}">{{book.title}}</a></li>
@@ -75,12 +75,9 @@
                     <li>This is one of your favorites.</li>
                     {% else %}
                     <li><a href="/favorite/{{book.id}}">Add to Favorites</a> </li>
-                    {% endif %}
+                    {% endif %} {% endfor %}
 
                 </ul>
-                {% endfor %}
-
-
             </div>
         </div>
 

@@ -7,6 +7,5 @@ urlpatterns = [
     path('login', views.login),
     path('logout', views.logout),
     path('redirect_view', views.redirect_view),
-    path('dojo_reads_app', views.index, name='dojo_reads_app'),
 
 ]
