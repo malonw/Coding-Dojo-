@@ -1,7 +1,3 @@
-.messages p {
-    color: red;
-}
-
 header {
     display: flex;
     justify-content: space-between;
@@ -9,8 +5,4 @@ header {
 
 .row {
     margin-left: 2em;
-}
-
-.listings p {
-    color: black;
 }

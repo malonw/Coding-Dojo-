@@ -18,29 +18,22 @@
     <header>
         <h1> Welcome, {{user.fname}}</h1>
         <a href="/logout">Logout</a>
-        <a href="/add_book">Add Book and Review</a>
+        <a href="/home">Home</a>
     </header>
     <hr>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="listings">
-                    <h3>Recent Book Reviews: </h3>
-                    <!-- <ul> -->
-                    {% for book in user_books %}
-                    <p><a href="/book_details_review/{{book.id}}">{{book.title}}</a></p>
-                    <p><a href="/user_info/{{user.id}}">{{book.reviewed_by.fname}}</a></p>
-                    <p> {{user.reviews }}</p>
-                    <!-- above not working  -->
-                    <p>Posted on: {{book.created_at}}</p>
-                    {% endfor %}
-                    <!-- </ul> -->
+                    <h3>User: {{user.fname}} </h3>
+                    <p>Email: {{user.email}}</p>
+                    <p>Books Reviewed: {{user.count}}</p>
                 </div>
             </div>
             <div class="col-md-6">
-                <h3>Other Books with Reviews:</h3>
+                <h3>Books {{user.fname}} has Reviewed:</h3>
                 <ul>
-                    {% for book in user_books %}
+                    {% for book in books_reviewed %}
                     <li><a href="/book_details_review/{{book.id}}">{{book.title}}</a></li>
                     {% endfor %}
             </div>
