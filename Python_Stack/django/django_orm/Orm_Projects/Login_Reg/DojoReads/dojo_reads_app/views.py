@@ -1,7 +1,7 @@
 from django.http import request
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import User, Book
+from .models import User, Book, Reviews
 import bcrypt
 
 # log in and registration
@@ -74,7 +74,6 @@ def home(request):
     context = {
         'user': User.objects.get(id=request.session['log_user_id']),
         'user_books': Book.objects.all(),
-
     }
     # this_book = Book.objects.last()
     # this_book.review.filter(id=user).exists():
@@ -85,6 +84,7 @@ def home(request):
 def add_book(request):
     context = {
         'authors': Book.objects.all()
+
     }
     return render(request, 'new_book_review.html', context)
 
@@ -103,14 +103,12 @@ def new_book(request):
         Book.objects.create(
             title=request.POST['title'],
             author=request.POST['author'],
-            reviewed_by=User.objects.get(id=user),
+
         )
-        this_book = Book.objects.last()
-        if this_book.review.filter(id=user).exists():
-            this_book.review.remove(user)
-        else:
-            this_book.review.add(user)
-            this_book.review.count()
+        Reviews.objects.create(
+            review=request.POST['review'],
+            rating=request.POST['rating'],
+        )
 
     return redirect('/home')
 
@@ -119,7 +117,7 @@ def book_details_review(request, book_id):
     context = {
         'user': User.objects.get(id=request.session['log_user_id']),
         'user_books': Book.objects.all(),
-        'books': Book.objects.get(id=book_id)
+        'books': Book.objects.get(id=book_id),
     }
 
     return render(request, 'book_review.html', context)
@@ -141,12 +139,6 @@ def update_review(request, book_id):
 
 
 def destroy(request, book_id):
-    user = request.session['log_user_id']
-    this_book = Book.objects.get(id=book_id)
-    if this_book.review.filter(id=user).exists():
-        this_book.review.remove(user)
-    else:
-        this_book.review.add(user)
 
     # add method to delete a book review if owned
     return redirect('/book_details_review')

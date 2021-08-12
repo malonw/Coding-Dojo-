@@ -30,9 +30,10 @@
                     {% for book in user_books %}
                     <p><a href="/book_details_review/{{book.id}}">{{book.title}}</a></p>
                     <p><a href="/user_info/{{user.id}}">{{book.reviewed_by.fname}}</a></p>
-                    <p> {{user.reviews }}</p>
+                    <p>Rating: {{book.reviews.rating}}</p>
+                    <p> {{book.user_reviews }}</p>
                     <!-- above not working  -->
-                    <p>Posted on: {{book.created_at}}</p>
+                    <p>Posted on: {{book.reviews.created_at}}</p>
                     {% endfor %}
                     <!-- </ul> -->
                 </div>

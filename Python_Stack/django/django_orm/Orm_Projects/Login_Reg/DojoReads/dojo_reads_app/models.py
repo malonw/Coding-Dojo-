@@ -1,7 +1,9 @@
 from django.db import models
-import re 
+import re
 
-        
+from django.db.models.base import Model
+from django.db.models.deletion import CASCADE
+
 
 class UserManager(models.Manager):
     def user_validator(self, postData):
@@ -20,6 +22,7 @@ class UserManager(models.Manager):
         if postData['password'] != postData['password2']:
             errors['password'] = "Passwords do not match"
         return errors
+
     def login_validator(self, postData):
         errors = {}
         EMAIL_REGEX = re.compile(
@@ -30,7 +33,7 @@ class UserManager(models.Manager):
         if len(postData["password"]) < 8:
             errors['password'] = "Password must be at least 8 characters."
         return errors
-        
+
 
 class User(models.Model):
     fname = models.CharField(max_length=100)
@@ -40,8 +43,6 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = UserManager()
-
-
 
 
 class BookManager(models.Manager):
@@ -57,13 +58,27 @@ class BookManager(models.Manager):
 class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
-    reviewed_by = models.ForeignKey(User, related_name="book_review_by", on_delete=models.CASCADE,)
-    review = models.ManyToManyField(User, related_name="reviews")
+    a_review = models.ManyToManyField(User, related_name="reviews")
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = BookManager()
 
 
-
+class Reviews(models.Model):
+    Rating_Choices = [
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    ]
+    review = models.TextField()
+    rating = models.IntegerField(choices=Rating_Choices)
+    user_review = models.ForeignKey(
+        User, related_name='user_reviews', on_delete=models.CASCADE)
+    book_review = models.ForeignKey(
+        Book, related_name='book_reviews', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
 # Create your models here.

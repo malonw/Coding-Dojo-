@@ -24,8 +24,10 @@
                 <div class="messages">
                     <h2>Register Here!</h2>
                     <form action="/register" method="POST" class="form-group" name="newuser">
-                        {% csrf_token %} {% if messages %} {% for message in messages %} {% if 'fname' in message.tags
-                        %}
+                        {% csrf_token %} {% if messages %}
+                        {% for message in messages %}
+                        {% if 'fname' in message.tags %}
+
                         <p>{{message}}</p>
                         {% endif %} {% endfor %} {% endif %}
                         <div class="form-group">
@@ -42,10 +44,15 @@
                         </div>
                         {% if messages %} {% for message in messages %} {% if 'email' in message.tags %}
                         <p>{{message}}</p>
-                        {% endif %} {% endfor %} {% endif %} {% if messages %} {% for message in messages %} {% if
-                        'register' in message.tags %}
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if 'register' in message.tags %}
                         <p>{{message}}</p>
-                        {% endif %} {% endfor %} {% endif %}
+                        {% endif %}
+                        {% endfor %} {% endif %}
 
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -73,10 +80,14 @@
                 <div class="col-md-6">
                     <h2> Login </h2>
                     <form action="/login" method="POST" class="form-group" name="login">
-                        {% csrf_token %} {% if messages %} {% for message in messages %} {% if 'login' in
-                        message.extra_tags %}
+                        {% csrf_token %} 
+                        {% if messages %} 
+                        {% for message in messages %} 
+                        {% if 'login' in message.extra_tags %}
                         <p>{{message}}</p>
-                        {% endif %} {% endfor %} {% endif %}
+                        {% endif %} 
+                        {% endfor %} 
+                        {% endif %}
 
                         <label for="email" class="form-lable">Email:</label>
                         <input type="email" name="email" class="form-control">
