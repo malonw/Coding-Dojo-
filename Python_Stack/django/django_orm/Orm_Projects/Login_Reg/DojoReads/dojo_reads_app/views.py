@@ -38,7 +38,7 @@ def register(request):
                     request.POST['password'].encode(), bcrypt.gensalt()).decode()
             )
             request.session['log_user_id'] = user1.id
-        return redirect('/home')
+        return redirect('/')
 
     return redirect("/")
 # login
@@ -74,13 +74,12 @@ def home(request):
     context = {
         'user': User.objects.get(id=request.session['log_user_id']),
         'user_books': Book.objects.all(),
+        'all_reviews':Reviews.objects.all(),
     }
-    # this_book = Book.objects.last()
-    # this_book.review.filter(id=user).exists():
 
     return render(request, 'home.html', context)
 
-
+# remder add a book page
 def add_book(request):
     context = {
         'authors': Book.objects.all()
@@ -102,40 +101,51 @@ def new_book(request):
         user = request.session['log_user_id']
         Book.objects.create(
             title=request.POST['title'],
-            author=request.POST['author'],
+            author=request.POST['author']
 
         )
         Reviews.objects.create(
             review=request.POST['review'],
             rating=request.POST['rating'],
+            user_review = User.objects.get(id=user),
+            book_review = Book.objects.last()
         )
 
     return redirect('/home')
 
 
-def book_details_review(request, book_id):
-    context = {
-        'user': User.objects.get(id=request.session['log_user_id']),
-        'user_books': Book.objects.all(),
-        'books': Book.objects.get(id=book_id),
-    }
-
-    return render(request, 'book_review.html', context)
 
 
 def user_info(request, user_id):
     context = {
         'user': User.objects.get(id=user_id),
-        'books_reviewed': Book.objects.filter(id=user_id),
+        'all_reviews':Reviews.objects.filter(id=user_id),
     }
 
     # add page to see user name, email and number of reviews and books reviewed
     return render(request, 'user_info.html', context)
 
+def book_review(request, book_id):
+    context = {
+        'some_reviews':Reviews.objects.filter(id=book_id),
+        'user': User.objects.get(id=request.session['log_user_id']),
+        'book' : Book.objects.get(id=book_id),
 
-def update_review(request, book_id):
-    # add method to update a book review
-    return redirect('/book_details_review')
+    }
+    return render(request, 'book_review.html', context)
+
+
+def add_a_review(request):
+    user=request.session['log_user_id']
+# add method to update a book review
+    Reviews.objects.create(
+        review=request.POST['review'],
+        rating=request.POST['rating'],
+        user_review = User.objects.get(id=user),
+        # book_review = Book.objects.last(),
+    )
+        
+    return redirect('/book_review')
 
 
 def destroy(request, book_id):

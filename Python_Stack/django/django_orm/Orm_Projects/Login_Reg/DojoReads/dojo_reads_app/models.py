@@ -58,26 +58,20 @@ class BookManager(models.Manager):
 class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
-    a_review = models.ManyToManyField(User, related_name="reviews")
+    a_review = models.ManyToManyField(User, related_name="user_reviews")
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = BookManager()
 
 
 class Reviews(models.Model):
-    Rating_Choices = [
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-        (5, '5'),
-    ]
     review = models.TextField()
-    rating = models.IntegerField(choices=Rating_Choices)
+    rating = models.IntegerField()
     user_review = models.ForeignKey(
-        User, related_name='user_reviews', on_delete=models.CASCADE)
+        User, related_name='user_reviewed', on_delete=models.CASCADE)
     book_review = models.ForeignKey(
-        Book, related_name='book_reviews', on_delete=models.CASCADE)
+        Book, related_name='book_reviewed', on_delete=models.CASCADE)
+    
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 

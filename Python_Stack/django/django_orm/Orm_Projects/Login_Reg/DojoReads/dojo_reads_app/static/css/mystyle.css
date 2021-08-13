@@ -3,6 +3,6 @@ header {
     justify-content: space-between;
 }
 
-.row {
-    margin-left: 2em;
+.listings {
+    border: 2px solid black;
 }
