@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Books Home</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
@@ -23,28 +24,38 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                {% for review in some_reviews %}
-                <h3>{{review.book_review.title}} </h3>
-                <h4>Author: {{review.book_review.author}}</h4>
-                {% endfor %}
+                <h3>{{books.title}} </h3>
+                <h4>Author: {{books.author}}</h4>
                 <hr>
                 <h3>Reviews:</h3>
                 <hr> {% for review in some_reviews %}
+                {% if review in books.book_reviewed.all %}
                 <h6>Rating: {{review.user_review.fname}} gave this book a {{review.rating}} out of 5</h6>
-                <p><a href="/user_info/{{review.user_review.id}}">{{review.user_review.fname}}</a> : {{review.review }} </p>
+                <p><a href="/user_info/{{review.user_review.id}}">{{review.user_review.fname}}</a> : {{review.review }}
+                </p>
+
                 <p>Posted on: {{review.created_at}}</p>
                 <!-- If user wrote review then user can delete review -->
                 {% if user.id == review.user_review.id %}
-                <p><a href="/destroy/{{review.book_review.id}}">Delete this Book Review</a></p>
+                {% if messages %}
+                {% for message in messages %}
+                {% if 'delete' in message.tags %}
+                <p>{{message}}</p>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                <p><a href="/destroy/{{review.id}}">Delete this Book Review</a></p>
+                {% endif %}
+                <hr>
 
                 {% endif %}
-                <hr> {% endfor %}
+                {% endfor %}
+
             </div>
             <div class="col-md-6">
                 <h2>Add Review Here:</h2>
 
-                <!-- having issues passing book.id -->
-                <form action="/add_review" method="POST" class="form-group" name="newuser">
+                <form action="/add_review/{{books.id}}" method="POST" class="form-group" name="newuser">
                     {% csrf_token %} {% if messages %} {% for message in messages %} {% if 'review' in message.tags %}
                     <p>{{message}}</p>
                     {% endif %} {% endfor %} {% endif %}
@@ -52,26 +63,23 @@
                         <label for="review">Review</label>
                         <textarea type="text" name="review" class="form-control"></textarea>
                     </div>
-                    <br>
+                    <br><!-- star rating -->
                     <h6>Rating <select name="rating" id="rating" selected='selected'></h6>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        </select>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
 
-                        <div class="form-group">
-                            <input type="submit" name="submit" value="Add a Review to this Book" id="add_book" class="btn-primary">
-                            <!-- star rating -->
-                        </div>
-
-
-
-
-
+                    <div class="form-group">
+                        <input type="submit" name="submit" value="Add a Review to this Book" class="btn-primary">
+                        
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

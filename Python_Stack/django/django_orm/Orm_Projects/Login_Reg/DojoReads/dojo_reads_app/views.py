@@ -74,12 +74,14 @@ def home(request):
     context = {
         'user': User.objects.get(id=request.session['log_user_id']),
         'user_books': Book.objects.all(),
-        'all_reviews':Reviews.objects.all(),
+        'all_reviews': Reviews.objects.all(),
     }
 
     return render(request, 'home.html', context)
 
 # remder add a book page
+
+
 def add_book(request):
     context = {
         'authors': Book.objects.all()
@@ -107,48 +109,52 @@ def new_book(request):
         Reviews.objects.create(
             review=request.POST['review'],
             rating=request.POST['rating'],
-            user_review = User.objects.get(id=user),
-            book_review = Book.objects.last()
+            user_review=User.objects.get(id=user),
+            book_review=Book.objects.last()
         )
 
     return redirect('/home')
 
 
-
-
 def user_info(request, user_id):
     context = {
         'user': User.objects.get(id=user_id),
-        'all_reviews':Reviews.objects.filter(id=user_id),
+        'all_reviews': Reviews.objects.all(),
     }
 
     # add page to see user name, email and number of reviews and books reviewed
     return render(request, 'user_info.html', context)
 
+
 def book_review(request, book_id):
     context = {
-        'some_reviews':Reviews.objects.filter(id=book_id),
+        'some_reviews': Reviews.objects.all(),
         'user': User.objects.get(id=request.session['log_user_id']),
-        'book' : Book.objects.get(id=book_id),
+        'books': Book.objects.get(id=book_id),
 
     }
     return render(request, 'book_review.html', context)
 
 
-def add_a_review(request):
-    user=request.session['log_user_id']
+def add_a_review(request, book_id):
+    user = request.session['log_user_id']
 # add method to update a book review
     Reviews.objects.create(
         review=request.POST['review'],
         rating=request.POST['rating'],
-        user_review = User.objects.get(id=user),
-        # book_review = Book.objects.last(),
+        user_review=User.objects.get(id=user),
+        book_review=Book.objects.get(id=book_id)
     )
-        
-    return redirect('/book_review')
+
+    return redirect('/home')
 
 
 def destroy(request, book_id):
+    messages.warning(
+        request, "Are you sure you want to delete this review?", extra_tags='delete')
+
+    review_del = Reviews.objects.get(id=book_id)
+    review_del.delete()
 
     # add method to delete a book review if owned
-    return redirect('/book_details_review')
+    return redirect('/home')
