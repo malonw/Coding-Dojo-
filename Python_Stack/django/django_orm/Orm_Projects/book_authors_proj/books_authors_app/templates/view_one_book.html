@@ -19,10 +19,21 @@
     <p>Description: {{book.desc}}</p>
     <hr>
     <h4>Authors</h4>
-    <ul>{% for author in books_by %}
-        <li>{{author.fname}} {{author.lname}}</li>
-    </ul>{% endfor %}
+    <hr>
+    <ul>
+        <li> need a list of authors</li>
+    </ul>
+    <form action="/add_author_to_book/{{book_id}}" method="POST">
+        {% csrf_token %}
+        <select name="Authors" id="authors" selected="selected">
+            {% for each in all_authors %}
+            <option value="author">{{each.fname}} {{each.lname}}</option>
+            {% endfor %}
+        </select>
 
+        <input type="submit" name="btn-success" class="btn-btn=success">
+
+    </form>
 
     <!-- need to add drop down with list of authors to add to book -->
 </body>

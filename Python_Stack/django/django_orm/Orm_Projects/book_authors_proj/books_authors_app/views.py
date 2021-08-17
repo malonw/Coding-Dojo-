@@ -23,6 +23,7 @@ def add_book(request):
         Book.objects.create(
             title=request.POST['title'],
             desc=request.POST['desc'],
+
         )
     return redirect('/')
 
@@ -30,8 +31,7 @@ def add_book(request):
 def view_book(request, id):
     view_book_query = {
         'book': Book.objects.get(id=id),
-        'books': Book.book_authors.through.objects.filter(id=id),
-
+        'all_authors': Author.objects.all()
     }
     return render(request, 'view_one_book.html', view_book_query)
 
@@ -58,6 +58,12 @@ def add_author(request):
             notes=request.POST['desc'],
         )
     return redirect('/authors')
+
+def add_author_to_book(request, book_id):
+    this_book = Book.objects.get(id=book_id)
+    if request.method == "POST":
+        this_book.book_authors.filter(id=book_id)
+    
 
 
 def view_author(request, id):
