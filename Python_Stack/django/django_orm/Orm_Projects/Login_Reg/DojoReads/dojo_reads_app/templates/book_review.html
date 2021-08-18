@@ -24,19 +24,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h3>{{books.title}} </h3>
-                <h4>Author: {{books.author}}</h4>
+                <h3>{{book.title}} </h3>
+                <h4>Author: {{book.author.name}}</h4>
                 <hr>
                 <h3>Reviews:</h3>
-                <hr> {% for review in some_reviews %}
-                {% if review in books.book_reviewed.all %}
-                <h6>Rating: {{review.user_review.fname}} gave this book a {{review.rating}} out of 5</h6>
-                <p><a href="/user_info/{{review.user_review.id}}">{{review.user_review.fname}}</a> : {{review.review }}
+                <hr> {% for review in all_reviews %}
+
+                <h6>Rating: {{review.user.reviews.fname}} gave this book a {{review.rating}} out of 5</h6>
+                <p><a href="/user_info/{{review.user.id}}">{{review.user.fname}}</a> : {{review.review }}
                 </p>
 
                 <p>Posted on: {{review.created_at}}</p>
                 <!-- If user wrote review then user can delete review -->
-                {% if user.id == review.user_review.id %}
+                {% if user.id == review.user.id %}
+                <!-- if for statements for messages -->
                 {% if messages %}
                 {% for message in messages %}
                 {% if 'delete' in message.tags %}
@@ -44,11 +45,11 @@
                 {% endif %}
                 {% endfor %}
                 {% endif %}
+                <!-- end of messages -->
                 <p><a href="/destroy/{{review.id}}">Delete this Book Review</a></p>
                 {% endif %}
                 <hr>
 
-                {% endif %}
                 {% endfor %}
 
             </div>
@@ -74,7 +75,7 @@
 
                     <div class="form-group">
                         <input type="submit" name="submit" value="Add a Review to this Book" class="btn-primary">
-                        
+
                     </div>
                 </form>
             </div>

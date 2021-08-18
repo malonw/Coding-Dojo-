@@ -1,0 +1,19 @@
+from books_authors_app.models import *
+Author.objects.create(fname="William",lname="Shakespeare")
+from books_authors_app.models import Books
+Books.objects.create(title="C Sharp", desc="Book about C#")
+UPDATE DB CharField
+    c=Book.objects.get(id=1)
+    c.title = "C#"
+    c.save()
+UPDATE DB author name
+    c =Author.objects.get(id=4)
+    c.fname="Bill"
+    c.save()
+Update ForeignKey
+    book_two=Book.objects.get(id=2)
+    book_two.author_id=1
+    book_two.save()
+Get all Books with Author #3
+    Book.objects.get(id=3).__dict__
+

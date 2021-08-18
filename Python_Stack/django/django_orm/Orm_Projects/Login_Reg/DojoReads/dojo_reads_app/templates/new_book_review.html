@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-md-6">
             <h2>Add a Book Title and Review Here:</h2>
-            <form action="/new_book" method="POST" class="form-group" name="newuser">
+            <form action="/new_book" method="POST" class="form-group" name="new_book">
                 {% csrf_token %} {% if messages %} {% for message in messages %} {% if 'title' in message.tags %}
                 <p>{{message}}</p>
                 {% endif %} {% endfor %} {% endif %}
@@ -36,16 +36,16 @@
 
                 <div class="form-group">
                     <label for="authors">Choose an Author from the list:</label>
-                    <select type="text" name="authors" selected="selected" class="form-control">
+                    <select name="authors" selected="selected" class="form-control">
                         {% for author in authors %}
-                        <option>{{author.author}}</option>
+                        <option value="{{author.id}}">{{author.name}}</option>
                         {% endfor %}
                     </select>
 
                 </div>
                 <div class="form-group">
                     <label for="text">OR Add a new Author</label>
-                    <input type="text" name="author" class="form-control">
+                    <input type="text" name="new_author" class="form-control">
                 </div>
                 {% if messages %} {% for message in messages %} {% if 'review' in message.tags %}
                 <p>{{message}}</p>
@@ -57,12 +57,15 @@
                 </div>
                 <br>
                 <h6>Rating <select name="rating" id="rating" selected='selected'></h6>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                </select>
+                <p>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
+                    stars!
+                </p>
                 <div class="form-group">
                     <input type="submit" name="submit" value="Add Book and Review" id="add_book" class="btn-primary">
                     <!-- star rating -->

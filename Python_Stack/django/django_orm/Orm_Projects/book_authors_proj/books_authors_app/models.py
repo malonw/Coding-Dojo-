@@ -18,11 +18,11 @@ class Author(models.Model):
 
 class BookManager(models.Manager):
     def book_validator(self, postData):
-        errors1 = {}
+        errors = {}
         if len(postData['title']) < 1:
-            errors1['title'] = "Title must be more than 1 character."
+            errors['title'] = "Title must be more than 1 character."
         if len(postData['desc']) < 5:
-            errors1 = "Description must be more than 5 characters."
+            errors = "Description must be more than 5 characters."
             
 
 class Book(models.Model):

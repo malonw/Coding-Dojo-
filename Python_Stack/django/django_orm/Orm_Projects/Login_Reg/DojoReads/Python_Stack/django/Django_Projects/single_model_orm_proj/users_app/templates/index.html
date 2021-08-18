@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users and Templates</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/mystyles1.css' %}">
+
+</head>
+
+<body>
+    <header>
+        <h1>All the Users</h1>
+    </header>
+    <div class="listing">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            {% for user in all_users %}
+            <tbody>
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.first_name}}{{user.last_name}}</td>
+                    <td>{{user.email_address}}</td>
+                    <td>{{user.age}} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    <hr>
+    <h2>Add a User</h2>
+
+    <div class="addauser">
+        <form action="create" method="POST">
+            {% csrf_token %}
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" id="last">
+            <br><br>
+            <label for="email_address">Email</label>
+            <input type="email" name="email_address" id="email_address">
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age">
+            <input type="submit" name="Add" value="Add">
+
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

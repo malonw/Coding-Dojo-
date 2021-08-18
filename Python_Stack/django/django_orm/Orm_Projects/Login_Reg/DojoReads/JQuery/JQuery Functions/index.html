@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="My JQuery Functions Assignment" />
+    <link rel="stylesheet" href="mystyle.css">
+    <title>My JQuery Functions Assignment</title>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    
+        $(document).ready(function () {
+
+            $("button.Aclass").click(function () {
+                $(".row p").addClass("red")
+            })
+            $("button.Stoggle").click(function () {
+                $("#python").slideToggle("slow", function () {
+                    // Animation Complete.
+                })
+            })
+            $("button.Append").click(function () {
+                $(".row2 p").append("<b> This is a new paragraph</b>")
+            })
+            $("button.b4").click(function () {
+                $(".row3 p").before("<b>This item is inserted before all paragraphs</b>")
+            })
+            $("button.After").click(function () {
+                $(".row4 p").after("<b>This item is inserted after all paragraphs</b>")
+            })
+            $("button.slideUp").click(function () {
+                $(".row5 img").slideUp("slow", function () {
+                    // Animation Complete
+                })
+            })
+            $("button.slideDwn").click(function () {
+                $(".row5 img").slideDown("slow", function () {
+                    // Animation Complete
+                })
+            })
+            $("button.hide").click(function () {
+                $(".row5 img").hide("slow", function () {
+                    alert("Animation complete.")
+                })
+            })
+            $("button.show").click(function () {
+                $(".row5 img").show("slow", function () {
+                    alert("Animation complete.")
+                })
+            })
+            $("button.toggle").click(function () {
+                $(".row5 img").toggle("slow", function () {
+                    alert("Animation complete.")
+                })
+            })
+            $("button.fadeIn").click(function () {
+                $(".row5 img").fadeIn("slow", function () {
+                    alert("Animation complete.")
+                })
+            })
+            $("button.fadeOut").click(function () {
+                $(".row5 img").fadeOut("slow", function () {
+                    alert("Animation complete.")
+                })
+            })
+            $("button.html").click(function () {
+                $(".empty ").html("Isn't bad practice to have empty HTML tags!")
+            })
+            $("button.text").click(function () {
+                $(".row6 p").last().text("WoW this is a cool function")
+            })
+
+            $("button.attr").click(function () {
+                $(".row7 img").attr({
+                    src: "./images/adventure-cat.png",
+                    title: "Adventure Cat"
+                })
+            })
+
+            $("button").click(function () {
+                var text = $(this).text()
+                $("input").val(text)
+            })
+
+
+        })
+
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h2>My JQuery Functions Assignment</h2>
+    </header>
+    <section>
+        <div class="row">
+            <button class="Aclass">AddClass</button>
+            <h1> AddClass</h1>
+            <p>Click the button to add class "red" to this paragraph</p>
+        </div>
+        <div class="row1">
+            <button class="Stoggle">SlideToggle</button>
+            <h1>SlideToggle</h1>
+            <p> Click the button to slidetoggle a hidden image</p>
+            <img id="python" src="./images/python.png" alt="python banner image" />
+        </div>
+        <div class="row2">
+            <button class="Append">Append</button>
+            <h1>Append</h1>
+            <p> Click the button to Append a new parargraph. </p>
+        </div>
+        <div class="row3">
+            <button class="b4">Before Function</button>
+            <h1>before function</h1>
+            <p> Click the button to insert something "before all paragraphs" </p>
+        </div>
+        <div class="row4">
+            <button class="After">After Function</button>
+            <h1>after function</h1>
+            <p> Click the button to insert something "after all paragraphs" </p>
+
+        </div>
+        <div class="row5">
+            <button class="slideUp">Slide Up</button>
+            <button class="hide">Hide</button>
+            <button class="toggle">Toggle</button>
+            <button class="fadeOut">Fade Out</button>
+            <h1>Slide Up</h1>
+            <h2>Hide</h2>
+            <h3>Toggle</h3>
+            <p> Click the button to hide content </p>
+            <p>Toggle will hide and show content</p>
+            <img src="./images/dojo-icon.png" alt="coding dojo icon">
+            <hr>
+            <button class="slideDwn">Slide Down</button>
+            <button class="show">Show</button>
+            <button class="fadeIn">Fade In</button>
+            <h1>Slide Down</h1>
+            <h2>Show</h2>
+            <p> Click the button to show content </p>
+        </div>
+
+        <div class="row6">
+            <button class="html">.HTML Function</button>
+            <p class="empty"></p>
+            <p> Click the button </p>
+            <h4>.text in action below</h4>
+            <button class="text">.text function</button>
+            <p>Will replace this text with new text.</p>
+        </div>
+        <div class="row7">
+            <h4>Below is supposed to have an image:</h4>
+            <img>
+            <button class="attr">.attr Function</button>
+            <p>The attr function can be used to add src attribute to an image</p>
+        </div>
+        <h4>The .val Function</h4>
+        <input type="text" value="click any button above">
+        <p>Will get the value of whatever button you clicked</p>
+    </section>
+
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>

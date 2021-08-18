@@ -13,9 +13,9 @@ def index(request):
 
 def add_book(request):
     if request.method == 'POST':
-        errors1 = Book.objects.book_validator(request.POST)
-    if len(errors1) > 0:
-        for key, value in errors1.items():
+        errors = Book.objects.book_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
             messages.error(request, value, extra_tags=key)
         return redirect('/')
 
@@ -59,11 +59,11 @@ def add_author(request):
         )
     return redirect('/authors')
 
+
 def add_author_to_book(request, book_id):
     this_book = Book.objects.get(id=book_id)
     if request.method == "POST":
         this_book.book_authors.filter(id=book_id)
-    
 
 
 def view_author(request, id):

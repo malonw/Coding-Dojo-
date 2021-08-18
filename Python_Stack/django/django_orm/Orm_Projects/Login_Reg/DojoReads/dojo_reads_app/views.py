@@ -1,7 +1,7 @@
 from django.http import request
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import User, Book, Reviews
+from .models import User, Book, Reviews, Author
 import bcrypt
 
 # log in and registration
@@ -73,8 +73,8 @@ def home(request):
 
     context = {
         'user': User.objects.get(id=request.session['log_user_id']),
-        'user_books': Book.objects.all(),
-        'all_reviews': Reviews.objects.all(),
+        'recent_reviews': Reviews.objects.order_by('-created_at')[:3],
+        'other_books': Reviews.objects.all(),
     }
 
     return render(request, 'home.html', context)
@@ -83,14 +83,16 @@ def home(request):
 
 
 def add_book(request):
+
     context = {
-        'authors': Book.objects.all()
+        'books': Book.objects.all(),
+        "authors": Author.objects.all(),
 
     }
     return render(request, 'new_book_review.html', context)
 
 
-def new_book(request):
+def create_book(request):
     if request.method == 'POST':
         errors1 = Book.objects.book_validator(request.POST)
     if len(errors1) > 0:
@@ -99,17 +101,21 @@ def new_book(request):
         return redirect('/add_book')
 
     else:
-        user = request.session['log_user_id']
-        Book.objects.create(
+        if len(request.POST['new_author']) > 0:
+            author = Author.objects.create(name=request.POST['new_author'])
+        else:
+            author = Author.objects.get(id=request.POST['author'])
+        user = User.objects.get(id=request.session['log_user_id'])
+        new_book = Book.objects.create(
             title=request.POST['title'],
-            author=request.POST['author']
+            author=author
 
         )
         Reviews.objects.create(
             review=request.POST['review'],
             rating=request.POST['rating'],
-            user_review=User.objects.get(id=user),
-            book_review=Book.objects.last()
+            book=new_book,
+            user=user,
         )
 
     return redirect('/home')
@@ -128,9 +134,9 @@ def user_info(request, user_id):
 
 def book_review(request, book_id):
     context = {
-        'some_reviews': Reviews.objects.all(),
-        'user': User.objects.get(id=request.session['log_user_id']),
-        'books': Book.objects.get(id=book_id),
+        'all_reviews': Reviews.objects.all(),
+        'book': Book.objects.get(id=book_id),
+        
 
     }
     return render(request, 'book_review.html', context)
@@ -142,8 +148,8 @@ def add_a_review(request, book_id):
     Reviews.objects.create(
         review=request.POST['review'],
         rating=request.POST['rating'],
-        user_review=User.objects.get(id=user),
-        book_review=Book.objects.get(id=book_id)
+        user=User.objects.get(id=user),
+        book=Book.objects.get(id=book_id)
     )
 
     return redirect('/home')
