@@ -1,8 +1,0 @@
-header {
-    display: flex;
-    justify-content: space-between;
-}
-
-.listings {
-    border: 2px solid black;
-}

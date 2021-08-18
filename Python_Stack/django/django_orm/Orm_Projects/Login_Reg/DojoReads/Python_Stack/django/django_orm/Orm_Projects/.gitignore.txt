@@ -1,3 +1,0 @@
-.env
-/sports_orm/
-sports_orm/
