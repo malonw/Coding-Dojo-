@@ -16,7 +16,7 @@ def index(request):
 
 def register(request):
     if request.method == "GET":
-        return redirect("/landing.html")
+        return redirect("/landing")
     if request.method == "POST":
         errors = User.objects.user_validator(request.POST)
         user1 = User.objects.filter(email=request.POST['email'])
@@ -99,7 +99,6 @@ def new_book(request):
         return redirect('/add_book')
 
     else:
-
         user = request.session['log_user_id']
         Book.objects.create(
             title=request.POST['title'],
@@ -114,6 +113,7 @@ def new_book(request):
         )
 
     return redirect('/home')
+# Review.objects.order_by('-created_at').values_list('reviewed_book', flat=True).distinct()[3:] This got me all the other books
 
 
 def user_info(request, user_id):
