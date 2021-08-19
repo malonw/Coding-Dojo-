@@ -27,48 +27,11 @@ RC.print_info()
 RC.update_price(.50, False)
 RC.print_info()
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f27e67753e364d1f2d5bc71cd8c026eae1977a11
 class Store:
 
     def __init__ (self, name, products=[]):
         self.name = name
         self.prods=products
-<<<<<<< HEAD
-        self.prod = products.append
-        id(self.prods)
-    
-        
-    def add_product(self, new_product):
-        self.new_product = new_product
-        self.prod(new_product)
-        return self
-    
-    def sell_product(self,ind):
-        self.ind=ind
-        # for i in range(len(self.prods)):
-        if id== ind :
-            self.prods.pop(ind)
-        return self    
-
-    def inflation(self,percent_increase):
-        self.percent_increased = percent_increase
-        Products.update_price
-        return self
-
-    def set_clearance(self,catagory,percent_discount):
-        self.catagory = catagory
-        self.percent_discount=percent_discount
-        if self.catagory == catagory:
-            Products.price = Products.price - (Products.price * percent_discount)
-        return self
-
-
-Toy=Store("RcVheicles")
-Toy.add_product("RcSpeedBoat").add_product("RedOct").add_product("MiniCoop").add_product("MustangGt").inflation(20).sell_product(2).add_product("RamTruck4x4")
-=======
         self.price = Products
         
         
@@ -117,5 +80,4 @@ print(Toy.catagory)
 
 
 
->>>>>>> f27e67753e364d1f2d5bc71cd8c026eae1977a11
 
