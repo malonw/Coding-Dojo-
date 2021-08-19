@@ -3,10 +3,6 @@ class Products:
         self.name = name
         self.price = price
         self.catagory = catagory
-<<<<<<< HEAD
-        
-=======
->>>>>>> f27e67753e364d1f2d5bc71cd8c026eae1977a11
         
         
     
