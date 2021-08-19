@@ -1,0 +1,5 @@
+def __repr__(self):
+        book = "Book List: " # Setting a string variable up with some starting text
+        for i in self.books.all(): # Iterating through our list of foreign key / many to many objects (e.g., books)
+            book += i.title + ", " # Adding each object and the key we want the value for, to the string variable we set up (and a comma to separate them)
+        return f"{book}" # Passing the variable we've created to show us the string

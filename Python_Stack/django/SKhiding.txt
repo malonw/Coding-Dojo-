@@ -1,0 +1,12 @@
+# settings.py
+
+from dotenv import load_dotenv
+load_dotenv()
+
+# .env
+SECRET_KEY=ek0@9u(zemu^+%*-z3!&y9mu_7u+edg9%)c%423mdoec-mi*
+
+
+
+# settings.py
+SECRET_KEY = str(os.getenv('SECRET_KEY'))

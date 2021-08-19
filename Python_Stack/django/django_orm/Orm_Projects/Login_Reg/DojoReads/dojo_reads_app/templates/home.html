@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Books Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+
+
+</head>
+
+<body>
+    <header>
+        <h1> Welcome! {{user.fname}}</h1>
+        <a href="/logout">Logout</a>
+        <a href="/add_book">Add Book and Review</a>
+    </header>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="listings">
+                    <h3>Recent Book Reviews: </h3>
+                    {% for review in recent_reviews %}
+                    <p><a href="/book_review/{{review.id}}">{{review.book.title}}</a></p>
+
+                    <p><a href="/user_info/{{review.user.id}}">{{review.user.fname}}
+                            {{review.user.lname}}</a>: {{review.review }}</p>
+                    <h6>Rating: {{review.user.fname}} gave this book a {{review.rating}} out of 5 stars!</h6>
+                    <p>Posted on: {{review.created_at}}</p>
+                    <hr> {% endfor %}
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="listings">
+                    <h3>Other Books with Reviews:</h3>
+                    <ul>
+
+                        {% for each in other_books %}
+                        <li><a href="/book_review/{{each.book.id}}">{{each.book.title}}</a></li>
+                        {% endfor %}
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</body>
+
+</html>

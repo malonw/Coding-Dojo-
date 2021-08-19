@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learning Forms in django" />
+    <title>Dojo Results</title>
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}"> -->
+    <style>
+        .Results {
+            width: 20em;
+            border: 4px solid blue;
+            justify-content: center;
+            margin: auto;
+            padding: 1em;
+        }
+        
+        #submit {
+            margin: 1em 0 0 14em;
+            background-color: rgba(17, 132, 136, 0.637);
+            color: white;
+            box-shadow: 4px 4px 2px -2px black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Results">
+        <h3> Submitted Info</h3>
+        <p> Name: {{request.session.name}}</p>
+        <p> Favorite Dojo : {{request.session.Dojo}}</p>
+        <p> Favorite Languages: {{request.session.favorite}}</p>
+        <p> Comments: {{request.session.comments}}</p>
+        <form action="index" method="GET">
+            <input type="submit" value="Go Back" id="submit">
+        </form>
+    </div>
+</body>
+
+</html>
