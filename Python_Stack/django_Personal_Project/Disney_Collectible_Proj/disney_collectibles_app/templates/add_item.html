@@ -1,0 +1,29 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Add an Item</h2>
+            <form action="create" method="POST">
+                <p>Name of Collectible <input type="text" name="name" id="name"></p>
+                <p>Catagory: <input type="text" name="catagory" id="catagory"></p>
+                <p>Quantity: <input type="number" name="quantity" id="quantity"></p>
+                <p>Value: $ <input type="number" name="value" id="value"></p>
+                <p>Manufacturer: <input type="text" name="manufacturer" id="manufacturer"></p>
+                <p>Great:<input type="radio" name="condtion" value="Great">
+                    Good:<input type="radio" name="condition" value="Good">
+                    Poor: <input type="radio" name="condition" value="Poor"></p>
+                <p>Description: <textarea name="desc" id="desc"></textarea></p>
+                <P>Image Link: <input type="url" name="image" id="image"></P>
+                <input type="submit" name="submit" value="Add Item" class="btn-btn-success">
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

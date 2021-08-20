@@ -1,23 +1,23 @@
-# Inside your app's forms.py file
 from django import forms
-from django.db.models import fields
-from django.forms.widgets import PasswordInput
-from .models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
+# Create your forms here.
 
-class RegisterForm(forms.Form):
+class NewUserForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+    fname = forms.CharField(max_length=255)
+    lname = forms.CharField(max_length=255)
+
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ("fname", "lname", "username",
+                  "email", "password1", "password2")
 
-    def save(self, commit = True):
-        user = super(RegisterForm, self).save(commit = False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
-    
-class LoginForm(forms.Form):
-    email = forms.EmailField(required=True)
-    password=PasswordInput()
+        def save(self, commit=True):
+            user = super(NewUserForm, self).save(commit=False)
+            user.email = self.cleaned_data['email']
+            if commit:
+                user.save()
+            return user
