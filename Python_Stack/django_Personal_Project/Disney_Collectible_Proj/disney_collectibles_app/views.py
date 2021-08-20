@@ -4,7 +4,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib import messages  # import messages
 from django.contrib.auth.forms import AuthenticationForm
+from .models import User, Item, Manufacturer, Catagory
 import bcrypt
+
 
 def homepage(request):
 
@@ -65,13 +67,13 @@ def add_item(request):
 def create(request):
     if request.method == "POST":
         user1 = request.session['log_user_id']
-        this_item=Item.objects.create(
-            name = request.POST['name'],
-            catsgory = request.POST['catagory'],
-            desc = request.POST['desc'],
-            quantity = request.POST['quantity'],
-            value = request.POST['value'],
-            manufacturer = request.POST [ 'manufacturer'],
+        this_item = Item.objects.create(
+            name=request.POST['name'],
+            catsgory=request.POST['catagory'],
+            desc=request.POST['desc'],
+            quantity=request.POST['quantity'],
+            value=request.POST['value'],
+            manufacturer=request.POST['manufacturer'],
 
         )
     return redirect('add_item')

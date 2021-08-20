@@ -8,6 +8,7 @@
         <div class="col-md-6">
             <h2>Add an Item</h2>
             <form action="create" method="POST">
+                {% csrf_token %}
                 <p>Name of Collectible <input type="text" name="name" id="name"></p>
                 <p>Catagory: <input type="text" name="catagory" id="catagory"></p>
                 <p>Quantity: <input type="number" name="quantity" id="quantity"></p>
