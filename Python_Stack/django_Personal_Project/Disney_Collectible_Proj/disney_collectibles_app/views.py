@@ -65,9 +65,13 @@ def add_item(request):
 def create(request):
     if request.method == "POST":
         user1 = request.user.id
-        man = Manufacturer.objects.create(
-            mname=request.POST['prod_man'],
-        )
+        if len(request.POST['new_prod_man']) > 0:
+            man = Manufacturer.objects.create(
+                mname=request.POST['new_prod_man']
+            )
+        else:
+            man = Manufacturer.objects.get(id=request.POST['prod_man'])
+
         Catagory.objects.create(
             cname=request.POST['prod_cat'],
         )
@@ -89,3 +93,36 @@ def create(request):
             add_fav.favorite.add(user1)
 
     return redirect('/add_item')
+
+def edit(request, item_id):
+    context = {
+        'user':User.objects.get(id=request.user.id),
+        'item':Item.objects.get(id= item_id),
+
+    }
+    return render(request, 'edit,htmll', context)
+
+def update(request, item_id):
+    update = Item.objects.get(id=item_id)
+    if request.method == "POST":
+        user1 = request.user.id
+        
+        update.name=request.POST['name'],
+        update.desc=request.POST['desc'],
+        update.quantity=request.POST['quantity'],
+        update.value=request.POST['value'],
+        update.image=request.POST['image'],
+        update.save()
+        messages.success(
+            request, 'Item Successfully Updated', extra_tags='update')
+
+    return redirect(f'/edit/{item_id}')
+
+# def favorite(request, id):
+#     user = request.session['log_user_id']
+#     add_fav = Book.objects.get(id=id)
+#     if add_fav.user_favorites.filter(id=user).exists():
+#         add_fav.user_favorites.remove(user)
+#     else:
+#         add_fav.user_favorites.add(user)
+#     return redirect('/books')

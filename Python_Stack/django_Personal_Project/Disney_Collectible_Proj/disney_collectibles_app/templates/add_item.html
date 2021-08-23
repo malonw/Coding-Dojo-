@@ -13,10 +13,22 @@
                 <p>Catagory: <input type="text" name="prod_cat" id="catagory"></p>
                 <p>Quantity: <input type="number" name="quantity" id="quantity"></p>
                 <p>Value: $ <input type="number" name="value" id="value"></p>
-                <p>Manufacturer: <input type="text" name="prod_man" id="manufacturer"></p>
-                <p>Great:<input type="radio" name="condtion" value="Great">
-                    Good:<input type="radio" name="condition" value="Good">
-                    Poor: <input type="radio" name="condition" value="Poor"></p>
+
+                <p>Manufacturer: Choose from List:
+                    <select name="prod_man" selected="selected">
+                        <!-- for loop -->
+                        <option value="{{maker.id}}">{{maker.mname}}</option>
+                        <!-- endfor -->
+                    </select>
+                <p>Or Input a new one: <input type="text" name="new_prod_man" id="manufacturer"></p>
+
+                <select name="condition" selected="selected" class="form-control">
+                    <p>Condition: </p>
+                    <option value="Great">Great</option>
+                    <option value="Good">Good</option>
+                    <option value="Poor">Poor</option>
+
+                </select>
                 <p>Description: <textarea name="desc" id="desc"></textarea></p>
                 <P>Image Link: <input type="url" name="image" id="image"></P>
                 <input type="submit" name="submit" value="Add Item" class="btn-success">

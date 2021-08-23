@@ -30,10 +30,19 @@
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link" href="#">Welcome, {{user.First_Name}}</a></h5>
+                    <h5><a class="nav-link" href="#">Welcome, {{user.username}}</a></h5>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/add_item">Add an Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit/{{item_id">Edit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/favorites">My Favorites</a>
                 </li>
 
                 {% else %}
