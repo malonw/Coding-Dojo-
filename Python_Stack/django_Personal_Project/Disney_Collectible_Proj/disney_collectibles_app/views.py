@@ -20,14 +20,11 @@ def register_request(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful.")
-            user1 = User.objects.create(
-                fname=request.POST['fname'],
-                lname=request.POST['lname'],
+            User.objects.create(
+                First_Name=request.POST['First_Name'],
+                Last_Name=request.POST['Last_Name'],
                 email=request.POST['email'],
-                password=bcrypt.hashpw(
-                    request.POST['password'].encode(), bcrypt.gensalt()).decode()
             )
-            request.session['log_user_id'] = user1.id
             return redirect("main:homepage")
         messages.error(
             request, "Unsuccessful registration. Invalid information.")
@@ -51,6 +48,7 @@ def login_request(request):
         else:
             messages.error(request, "Invalid username or password.")
     form = AuthenticationForm()
+
     return render(request=request, template_name="main/login.html", context={"login_form": form})
 
 
@@ -66,14 +64,28 @@ def add_item(request):
 
 def create(request):
     if request.method == "POST":
-        user1 = request.session['log_user_id']
-        this_item = Item.objects.create(
+        user1 = request.user.id
+        man = Manufacturer.objects.create(
+            mname=request.POST['prod_man'],
+        )
+        Catagory.objects.create(
+            cname=request.POST['prod_cat'],
+        )
+
+        Item.objects.create(
             name=request.POST['name'],
-            catsgory=request.POST['catagory'],
             desc=request.POST['desc'],
             quantity=request.POST['quantity'],
             value=request.POST['value'],
-            manufacturer=request.POST['manufacturer'],
+            image=request.POST['image'],
+            prod_man=man,
+            # prod_cat=cat
 
         )
-    return redirect('add_item')
+        add_fav = Item.objects.last()
+        if add_fav.favorite.filter(id=user1).exists():
+            add_fav.favorite.remove(user1)
+        else:
+            add_fav.favorite.add(user1)
+
+    return redirect('/add_item')

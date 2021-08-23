@@ -7,12 +7,12 @@ from django.contrib.auth.models import User
 
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    fname = forms.CharField(max_length=255)
-    lname = forms.CharField(max_length=255)
+    First_Name = forms.CharField(max_length=255)
+    Last_Name = forms.CharField(max_length=255)
 
     class Meta:
         model = User
-        fields = ("fname", "lname", "username",
+        fields = ("First_Name", "Last_Name", "username",
                   "email", "password1", "password2")
 
         def save(self, commit=True):

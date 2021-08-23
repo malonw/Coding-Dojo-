@@ -34,22 +34,27 @@ import re
 #         if len(postData["password"]) < 8:
 #             errors['password'] = "Password must be at least 8 characters."
 #         return errors
+
+
 def validaeLengthGreaterThanTwo(value):
     if len(value) < 3:
         raise ValidationError(
             '{} must be longer than: 2'.format(value)
         )
 
+
 def email_validation(value):
-    validator = RegexValidator( r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$' )
+    validator = RegexValidator(
+        r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
     validator(value)
     return value
 
 
-
 class User(models.Model):
-    fname = models.CharField(max_length=100, validators=[validaeLengthGreaterThanTwo])
-    lname = models.CharField(max_length=100, validators=[validaeLengthGreaterThanTwo])
+    First_Name = models.CharField(max_length=100, validators=[
+        validaeLengthGreaterThanTwo])
+    Last_Name = models.CharField(max_length=100, validators=[
+        validaeLengthGreaterThanTwo])
     email = models.EmailField(max_length=100, validators=[email_validation])
     password = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now=True)
@@ -58,14 +63,14 @@ class User(models.Model):
 
 
 class Catagory(models.Model):
-    name = models.CharField(max_length=255)
+    cname = models.CharField(max_length=255)
 
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
 
 class Manufacturer(models.Model):
-    name = models.CharField(max_length=255)
+    mname = models.CharField(max_length=255)
 
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -76,26 +81,29 @@ class ItemManager(models.ManyToManyRel):
         errors = {}
         if len(postData['name']) < 1:
             errors['name'] = "Name Required."
-        if len(postData['catagory']) < 2:
-            errors['catagory'] = "Catagory must be 2 characters or more."
+        if len(postData['prod_cat']) < 2:
+            errors['prod_cat'] = "Catagory must be 2 characters or more."
         if len(postData['desc']) < 2:
             errors['desc'] = "Description must be 2 characters or more."
         if len(postData['value']) < 1:
             errors['value'] = "Value Required."
-        if len(postData['manufacturer']) < 2:
-            errors['manufacturer'] = "Manufacturer must be 2 characters or more."
+        if len(postData['prod_man']) < 2:
+            errors['prod_man'] = "Manufacturer must be 2 characters or more."
 
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
-    catagory = models.ManyToManyField(Catagory, related_name='catagories')
+    prod_cat = models.ManyToManyField(Catagory, related_name='catagories')
     desc = models.TextField()
     quantity = models.IntegerField()
-    condition = models.BooleanField(default=True)
+    condition = models.CharField(max_length=20)
     value = models.IntegerField()
-    manufacturer = models.ForeignKey(
+    prod_man = models.ForeignKey(
         Manufacturer, related_name="maker", on_delete=models.CASCADE)
     image = models.ImageField()
+    favorite = models.ManyToManyField(
+        User, related_name="my_fav")
+
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 

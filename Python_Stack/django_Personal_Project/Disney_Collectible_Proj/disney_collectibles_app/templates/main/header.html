@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
 
     <title>Header </title>
+
 </head>
 
 <body>
@@ -27,7 +30,7 @@
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <h5><a class="nav-link" href="#">Welcome, {{user.username}}</a></h5>
+                    <h5><a class="nav-link" href="#">Welcome, {{user.First_Name}}</a></h5>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/add_item">Add an Item</a>
@@ -37,6 +40,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/register"> Register</a>
                 </li>
 
                 {% endif %}
