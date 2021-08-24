@@ -1,0 +1,39 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/">Home</a>
+            <h2>Edit an Item</h2>
+            <form action="/update/{{item_id}}" method="POST">
+                {% csrf_token %}
+                {% if messages %} {% for message in messages %} {% if 'name' in message.tags %}
+                <p>{{message}}</p>
+                {% endif %} {% endfor %} {% endif %}
+                {% if messages %} {% for message in messages %} {% if 'desc' in message.tags %}
+                <p>{{message}}</p>
+                {% endif %} {% endfor %} {% endif %}
+                {% if messages %} {% for message in messages %} {% if 'value' in message.tags %}
+                <p>{{message}}</p>
+                {% endif %} {% endfor %} {% endif %}
+                {% if messages %} {% for message in messages %} {% if 'update' in message.tags %}
+                <p>{{message}}</p>
+                {% endif %} {% endfor %} {% endif %}
+
+                <p>Name of Collectible <input type="text" name="name" id="name" value="{{item.name}}"></p>
+                <p>Quantity: <input type="number" name="quantity" id="quantity" value="{{item.quantity}}"></p>
+                <p>Value: $ <input type="number" name="value" id="value" value="{{item.value}}"></p>
+                <p>Description: <textarea name="desc" id="desc" value="{{item.desc}}">{{item.desc}}</textarea></p>
+                <P>Image Link: <input type="url" name="image" id="image"></P>
+                <input type="submit" name="submit" value="Update" class="btn-success">
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

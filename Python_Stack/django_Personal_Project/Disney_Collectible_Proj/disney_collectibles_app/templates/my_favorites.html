@@ -1,0 +1,24 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="wdw_image">
+                <a href="/">Home</a>
+                <h2>Hello {{user.First_Name}}</h2>
+                <h4>Your Favorites</h4>
+                <hr>
+                <ul>
+                    {% for each in my_fav.all %}
+                    <li>{{each.name}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

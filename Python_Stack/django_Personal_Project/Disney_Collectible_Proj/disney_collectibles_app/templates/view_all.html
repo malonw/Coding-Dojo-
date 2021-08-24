@@ -1,0 +1,41 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="wdw_image">
+                <hr>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Quantity</td>
+                            <td>Value</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for each in all %}
+                        <tr>
+                            <td>{{each.id}}</td>
+                            <td>{{each.name}}</td>
+                            <td>{{each.quantity}}</td>
+                            <td>{{each.value}}</td>
+                            <td><a href="/edit/{{each.id}}">Edit Item</a> | <a href="/view_one/{{each.id}}">View
+                                    Item</a> | <a href="favorites/{{each.id}}">Add to my Favorites</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

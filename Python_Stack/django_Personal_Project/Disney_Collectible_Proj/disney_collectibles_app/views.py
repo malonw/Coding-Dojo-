@@ -94,35 +94,69 @@ def create(request):
 
     return redirect('/add_item')
 
+
 def edit(request, item_id):
     context = {
-        'user':User.objects.get(id=request.user.id),
-        'item':Item.objects.get(id= item_id),
+        'user': User.objects.get(id=request.user.id),
+        'item': Item.objects.get(id=item_id),
 
     }
-    return render(request, 'edit,htmll', context)
+    return render(request, 'edit.html', context)
+
 
 def update(request, item_id):
     update = Item.objects.get(id=item_id)
     if request.method == "POST":
-        user1 = request.user.id
-        
-        update.name=request.POST['name'],
-        update.desc=request.POST['desc'],
-        update.quantity=request.POST['quantity'],
-        update.value=request.POST['value'],
-        update.image=request.POST['image'],
+
+        update.name = request.POST['name'],
+        update.desc = request.POST['desc'],
+        update.quantity = request.POST['quantity'],
+        update.value = request.POST['value'],
+        update.image = request.POST['image'],
         update.save()
         messages.success(
             request, 'Item Successfully Updated', extra_tags='update')
 
     return redirect(f'/edit/{item_id}')
 
-# def favorite(request, id):
-#     user = request.session['log_user_id']
-#     add_fav = Book.objects.get(id=id)
-#     if add_fav.user_favorites.filter(id=user).exists():
-#         add_fav.user_favorites.remove(user)
-#     else:
-#         add_fav.user_favorites.add(user)
-#     return redirect('/books')
+
+def favorite(request, item_id):
+    user = request.user.id
+    add_fav = Item.objects.get(id=item_id)
+    if add_fav.favorite.filter(id=user).exists():
+        add_fav.favorite.remove(user)
+    else:
+        add_fav.favorite.add(user)
+    return redirect('/view_all')
+
+
+def my_favorites(request, user_id):
+    context = {
+        'user': User.objects.get(id=user_id),
+
+    }
+    return render(request, 'my_favorites.html', context)
+
+
+def view_all(request):
+    context = {
+        'all': Item.objects.all()
+    }
+    return render(request, 'view_all.html', context)
+
+
+def view_one(request, item_id):
+    context = {
+        'item': Item.objects.get(id=item_id),
+
+    }
+    return render(request, 'view_one.html', context)
+
+
+def remove(request, item_id):
+    if request.method == "POST":
+        messages.warning(
+            request, "Are you sure you want to delete this Item :{item.name}?")
+        dele = Item.objects.get(id=item_id)
+        dele.delete()
+    return redirect('/home')
