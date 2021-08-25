@@ -1,9 +1,6 @@
 from django.db import models
 import re
 
-from django.db.models.base import Model
-from django.db.models.deletion import CASCADE
-
 
 class UserManager(models.Manager):
     def user_validator(self, postData):

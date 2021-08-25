@@ -5,10 +5,12 @@ app_name = "main"
 
 
 urlpatterns = [
-    path("", views.homepage, name="homepage"),
-    path("register", views.register_request, name="register"),
-    path("login", views.login_request, name="login"),
-    path("logout", views.logout_request, name="logout"),
+    path("", views.homepage),
+    path('register', views.register),
+    path('register_request', views.register_request),
+    path('login', views.login),
+    path('login_request', views.login_request),
+    path('logout', views.logout_request),
     path("add_item", views.add_item, name="add_item"),
     path("create", views.create, name="create"),
     path("edit/<int:item_id>", views.edit),

@@ -1,61 +1,80 @@
 from django.shortcuts import render, redirect
-from .forms import NewUserForm
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.models import User
 from django.contrib import messages  # import messages
-from django.contrib.auth.forms import AuthenticationForm
 from .models import User, Item, Manufacturer, Catagory
 import bcrypt
 
 
 def homepage(request):
+    context = {
+        'users': User.objects.get(id=request.session['log_user_id'])
+    }
+    return render(request, 'main/home.html', context)
 
-    return render(request=request, template_name='main/home.html')
+
+# log in and registration
+
+
+# registration
+def register(request):
+
+    return render(request, template_name='main/register.html')
 
 
 def register_request(request):
+    if request.method == "GET":
+        return redirect("/")
     if request.method == "POST":
-        form = NewUserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(request, "Registration successful.")
-            User.objects.create(
-                First_Name=request.POST['First_Name'],
-                Last_Name=request.POST['Last_Name'],
+        errors = User.objects.user_validator(request.POST)
+        user1 = User.objects.filter(email=request.POST['email'])
+        if user1.exists():
+            messages.error(
+                request, "This email is already Registered!", extra_tags='register')
+            return redirect('/')
+
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value, extra_tags=key)
+            return redirect('/')
+        else:
+            user1 = User.objects.create(
+                fname=request.POST['fname'],
+                lname=request.POST['lname'],
                 email=request.POST['email'],
+                password=bcrypt.hashpw(
+                    request.POST['password'].encode(), bcrypt.gensalt()).decode()
             )
-            return redirect("main:homepage")
-        messages.error(
-            request, "Unsuccessful registration. Invalid information.")
-    form = NewUserForm
-    return render(request=request, template_name="main/register.html", context={"register_form": form})
+            request.session['log_user_id'] = user1.id
+        return redirect('/')
+
+    return redirect("/")
+# login
+
+
+def login(request):
+    return render(request, 'main/login.html')
 
 
 def login_request(request):
-    if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.info(request, f"You are now logged in as {username}.")
-                return redirect("main:homepage")
-            else:
-                messages.error(request, "Invalid username or password.")
-        else:
-            messages.error(request, "Invalid username or password.")
-    form = AuthenticationForm()
+    user_list = User.objects.filter(email=request.POST['email'])
+    if user_list:
+        logged_user = user_list[0]
+        if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
+            request.session['log_user_id'] = logged_user.id
 
-    return render(request=request, template_name="main/login.html", context={"login_form": form})
+            return redirect('/')
+        else:
+            messages.error(request, "Invalid email or password.",
+                           extra_tags='login')
+            return redirect('/')
+    messages.error(request, "Email does not exist.", extra_tags='login')
+    return redirect('/')
+
+# logout
 
 
 def logout_request(request):
-    logout(request)
-    messages.info(request, "You have successfully logged out.")
-    return redirect("main:homepage")
+    request.session.clear()
+    return redirect('/')
 
 
 def add_item(request):

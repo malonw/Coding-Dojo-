@@ -16,35 +16,6 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib import admin
 
-from disney_collectibles_app.models import User as U, Catagory, Manufacturer, Item
-
-
-class UAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(U, UAdmin)
-
-
-class CatagoryAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Catagory, CatagoryAdmin)
-
-
-class ManufacturerAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Manufacturer, ManufacturerAdmin)
-
-
-class ItemAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Item, ItemAdmin)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
