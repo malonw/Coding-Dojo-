@@ -7,7 +7,44 @@
 <!--Register-->
 <div class="container py-5">
     <header>
-        <h1>Registration</h1>
+            <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <h5><a class="nav-link" href="#">Welcome!</a></h5>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add_item">Add an Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/view_all">View All</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/my_favorites/{{user.id}}">My Favorites</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/register"> Register</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
     </header>
     <hr>
     <div class="container">

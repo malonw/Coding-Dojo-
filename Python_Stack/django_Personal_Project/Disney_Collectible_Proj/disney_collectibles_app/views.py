@@ -6,18 +6,19 @@ import bcrypt
 
 def homepage(request):
     context = {
-        'users': User.objects.get(id=request.session['log_user_id'])
+        'user': User.objects.get(id=request.session['log_user_id'])
     }
     return render(request, 'main/home.html', context)
 
 
 # log in and registration
-
+def index(request):
+    return render(request, 'main/index.html')
 
 # registration
 def register(request):
 
-    return render(request, template_name='main/register.html')
+    return render(request, 'main/register.html')
 
 
 def register_request(request):
@@ -29,12 +30,12 @@ def register_request(request):
         if user1.exists():
             messages.error(
                 request, "This email is already Registered!", extra_tags='register')
-            return redirect('/')
+            return redirect('/main/login')
 
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value, extra_tags=key)
-            return redirect('/')
+            return redirect('/main/register')
         else:
             user1 = User.objects.create(
                 fname=request.POST['fname'],
@@ -43,8 +44,9 @@ def register_request(request):
                 password=bcrypt.hashpw(
                     request.POST['password'].encode(), bcrypt.gensalt()).decode()
             )
-            request.session['log_user_id'] = user1.id
-        return redirect('/')
+            request.session['log_user_id'] = user1
+
+        return redirect('/main/home')
 
     return redirect("/")
 # login
@@ -60,14 +62,13 @@ def login_request(request):
         logged_user = user_list[0]
         if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
             request.session['log_user_id'] = logged_user.id
-
-            return redirect('/')
+            return redirect('/main/home')
         else:
             messages.error(request, "Invalid email or password.",
                            extra_tags='login')
-            return redirect('/')
+            return redirect('/main/login')
     messages.error(request, "Email does not exist.", extra_tags='login')
-    return redirect('/')
+    return redirect('/main/login')
 
 # logout
 
@@ -78,7 +79,7 @@ def logout_request(request):
 
 
 def add_item(request):
-    return render(request, template_name='add_item.html')
+    return render(request, 'add_item.html')
 
 
 def create(request):

@@ -1,0 +1,24 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="wdw_image">
+
+
+                <h1>Welcome {{user.fname}}</h1>
+                <h2>Disney Collectibles</h2>
+
+                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/register"> Register</a>
+
+                <img src="../../static/images/WDWCastle.jpg" alt="WDWCastle image">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
