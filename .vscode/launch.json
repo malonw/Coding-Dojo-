@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch TestFizzBuzz",
+            "request": "launch",
+            "mainClass": "TestFizzBuzz",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
