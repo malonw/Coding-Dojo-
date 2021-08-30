@@ -1,0 +1,16 @@
+body {
+    background-size: 100%;
+    background-image: url(../images/WDWCastle.jpg);
+}
+
+.homepage, a, h3 {
+    color: white;
+}
+
+h1, h2 {
+    color: white;
+}
+
+.register, .container {
+    color: white;
+}

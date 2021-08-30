@@ -1,118 +1,98 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages  # import messages
-from .models import User, Item, Manufacturer, Catagory
-import bcrypt
+from django.contrib.auth import login
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from .forms import CustomUserCreationForm
+from .models import Manufacturer, Catagory, Item
+from django.contrib.auth.models import User
 
 
-def homepage(request):
-    context = {
-        'user': User.objects.get(id=request.session['log_user_id'])
-    }
-    return render(request, 'main/home.html', context)
+def dashboard(request):
+    return render(request, "users/dashboard.html")
 
 
-# log in and registration
-def index(request):
-    return render(request, 'main/index.html')
-
-# registration
 def register(request):
-
-    return render(request, 'main/register.html')
-
-
-def register_request(request):
     if request.method == "GET":
-        return redirect("/")
-    if request.method == "POST":
-        errors = User.objects.user_validator(request.POST)
-        user1 = User.objects.filter(email=request.POST['email'])
-        if user1.exists():
-            messages.error(
-                request, "This email is already Registered!", extra_tags='register')
-            return redirect('/main/login')
+        return render(
+            request, "users/register.html",
+            {"form": CustomUserCreationForm}
+        )
+    elif request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+        return redirect(reverse("dashboard"))
 
-        if len(errors) > 0:
-            for key, value in errors.items():
-                messages.error(request, value, extra_tags=key)
-            return redirect('/main/register')
-        else:
-            user1 = User.objects.create(
-                fname=request.POST['fname'],
-                lname=request.POST['lname'],
-                email=request.POST['email'],
-                password=bcrypt.hashpw(
-                    request.POST['password'].encode(), bcrypt.gensalt()).decode()
-            )
-            request.session['log_user_id'] = user1
 
-        return redirect('/main/home')
+def password_reset(request):
+    return render(request, 'password_change_form.html')
 
-    return redirect("/")
+    # if request.method == "GET":
+    #     return redirect("/")
+    # if request.method == "POST":
+    #     errors = User.objects.user_validator(request.POST)
+    #     user1 = User.objects.filter(email=request.POST['email'])
+    #     if user1.exists():
+    #         messages.error(
+    #             request, "This email is already Registered!", extra_tags='register')
+    #         return redirect('/')
+
+    #     if len(errors) > 0:
+    #         for key, value in errors.items():
+    #             messages.error(request, value, extra_tags=key)
+    #         return redirect('/')
+    #     else:
+    #         user1 = User.objects.create(
+    #             first_name=request.POST['first_name'],
+    #             last_name=request.POST['last_name'],
+    #             email=request.POST['email'],
+    #             password=bcrypt.hashpw(
+    #                 request.POST['password'].encode(), bcrypt.gensalt()).decode()
+    #         )
+    #         request.session['log_user_id'] = user1.id
+    #     return redirect('/')
+
+    # return redirect("/")
 # login
 
 
-def login(request):
-    return render(request, 'main/login.html')
-
-
-def login_request(request):
-    user_list = User.objects.filter(email=request.POST['email'])
-    if user_list:
-        logged_user = user_list[0]
-        if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
-            request.session['log_user_id'] = logged_user.id
-            return redirect('/main/home')
-        else:
-            messages.error(request, "Invalid email or password.",
-                           extra_tags='login')
-            return redirect('/main/login')
-    messages.error(request, "Email does not exist.", extra_tags='login')
-    return redirect('/main/login')
-
-# logout
-
-
-def logout_request(request):
-    request.session.clear()
-    return redirect('/')
-
-
 def add_item(request):
-    return render(request, 'add_item.html')
+    return render(request, template_name='add_item.html')
 
 
 def create(request):
     if request.method == "POST":
-        user1 = request.user.id
-        if len(request.POST['new_prod_man']) > 0:
-            man = Manufacturer.objects.create(
-                mname=request.POST['new_prod_man']
+        if request.user.is_authenticated:
+            user1 = User.objects.last()
+            if len(request.POST['new_prod_man']) > 0:
+                man = Manufacturer.objects.create(
+                    mname=request.POST['new_prod_man']
+                )
+            else:
+                man = Manufacturer.objects.get(id=request.POST['prod_man'])
+
+            Catagory.objects.create(
+                cname=request.POST['prod_cat'],
             )
-        else:
-            man = Manufacturer.objects.get(id=request.POST['prod_man'])
 
-        Catagory.objects.create(
-            cname=request.POST['prod_cat'],
-        )
+            Item.objects.create(
+                name=request.POST['name'],
+                desc=request.POST['desc'],
+                quantity=request.POST['quantity'],
+                value=request.POST['value'],
+                image=request.POST['image'],
+                prod_man=man,
+                # prod_cat=cat
 
-        Item.objects.create(
-            name=request.POST['name'],
-            desc=request.POST['desc'],
-            quantity=request.POST['quantity'],
-            value=request.POST['value'],
-            image=request.POST['image'],
-            prod_man=man,
-            # prod_cat=cat
+            )
+            add_fav = Item.objects.last()
+            if add_fav.favorite.filter(id=user1).exists():
+                add_fav.favorite.remove(user1)
+            else:
+                add_fav.favorite.add(user1)
+        
 
-        )
-        add_fav = Item.objects.last()
-        if add_fav.favorite.filter(id=user1).exists():
-            add_fav.favorite.remove(user1)
-        else:
-            add_fav.favorite.add(user1)
-
-    return redirect('/add_item')
+        return redirect('/add_item')
 
 
 def edit(request, item_id):

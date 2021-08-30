@@ -1,17 +1,13 @@
 from django.urls import path
 from . import views
-
-app_name = "main"
-
+from django.conf.urls import include, url
 
 urlpatterns = [
-    path("", views.index),
-    path("home", views.homepage),
-    path('register', views.register),
-    path('register_request', views.register_request),
-    path('login', views.login),
-    path('login_request', views.login_request),
-    path('logout', views.logout_request),
+    path('', views.dashboard),
+    url(r"^accounts/", include("django.contrib.auth.urls")),
+    url(r"^dashboard/", views.dashboard, name="dashboard"),
+    url(r"^register/", views.register, name="register"),
+    url(r"^password_reset/", views.password_reset, name="password_reset"),
     path("add_item", views.add_item, name="add_item"),
     path("create", views.create, name="create"),
     path("edit/<int:item_id>", views.edit),
