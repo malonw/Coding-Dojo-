@@ -1,0 +1,7 @@
+{
+    "cmake.configureOnOpen": true,
+    "java.project.sourcePaths": [
+        "JavaFun",
+        "MalonW-Assignments/01-java-fundamentals/02-alfred-bot"
+    ]
+}

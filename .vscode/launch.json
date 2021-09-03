@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TestBasics",
+            "request": "launch",
+            "mainClass": "TestBasics",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
+            "type": "java",
             "name": "Launch TestFizzBuzz",
             "request": "launch",
             "mainClass": "TestFizzBuzz",

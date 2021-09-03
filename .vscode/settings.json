@@ -3,7 +3,8 @@
         "./Python_Stack/python/modularizing"
     ],
     "java.project.sourcePaths": [
+        "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/03-fizzbuzz",
         "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/02-alfred-bot",
-        "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/03-fizzbuzz"
+        "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/05-basics"
     ]
 }

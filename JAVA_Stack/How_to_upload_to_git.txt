@@ -1,0 +1,5 @@
+cd to MalonW_Assignments
+git add .
+git status
+git commit -m "whatever Assignment"
+git push origin master
