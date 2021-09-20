@@ -3,8 +3,19 @@
         "./Python_Stack/python/modularizing"
     ],
     "java.project.sourcePaths": [
+        "JAVA_Stack/MalonW-Assignments/02-java-oop/09-phone",
+        "JAVA_Stack/MalonW-Assignments/02-java-oop/07-bank-account",
+        "JAVA_Stack/MalonW-Assignments/02-java-oop/06-object-master-p2",
+        "JAVA_Stack/MalonW-Assignments/02-java-oop/05-object-master-pt1",
+        "JAVA_Stack/MalonW-Assignments/02-java-oop/04-zoo-keeper-pt2",
+        "JAVA_Stack/MalonW-Assignments/02-java-oop/03-zoo-keeper-pt1",
+        "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/08-lists-of-exceptions",
+        "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/07-map-of-the-hashmatique",
+        "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/06-puzzling",
+        "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/05-basics",
         "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/03-fizzbuzz",
         "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/02-alfred-bot",
-        "JAVA_Stack/MalonW-Assignments/01-java-fundamentals/05-basics"
-    ]
+        "JAVA/MalonW-Assignments/02-java-oop/10-calculator-i/src"
+    ],
+    "cmake.configureOnOpen": false
 }

@@ -1,7 +1,11 @@
 {
     "cmake.configureOnOpen": true,
     "java.project.sourcePaths": [
+        "MalonW-Assignments/02-java-oop/02-singly-linked-list",
+        "MalonW-Assignments/02-java-oop/01-project-class",
+        "MalonW-Assignments/01-java-fundamentals/05-basics",
+        "MalonW-Assignments/01-java-fundamentals/02-alfred-bot",
         "JavaFun",
-        "MalonW-Assignments/01-java-fundamentals/02-alfred-bot"
+        "MalonW-Assignments/02-java-oop/07-bank-account"
     ]
 }

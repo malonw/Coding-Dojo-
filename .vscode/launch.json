@@ -6,6 +6,69 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch calculatorOne/CaculatorOneTest",
+            "request": "launch",
+            "mainClass": "calculatorOne/CaculatorOneTest",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
+            "type": "java",
+            "name": "Launch PhoneTest",
+            "request": "launch",
+            "mainClass": "PhoneTest",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
+            "type": "java",
+            "name": "Launch BankAccountTest",
+            "request": "launch",
+            "mainClass": "BankAccountTest",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
+            "type": "java",
+            "name": "Launch HumanTest",
+            "request": "launch",
+            "mainClass": "HumanTest",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
+            "type": "java",
+            "name": "Launch GiantBatTest",
+            "request": "launch",
+            "mainClass": "GiantBatTest",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
+            "type": "java",
+            "name": "Launch GorillaTest",
+            "request": "launch",
+            "mainClass": "GorillaTest",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
+            "type": "java",
+            "name": "Launch Exceptions",
+            "request": "launch",
+            "mainClass": "Exceptions",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
+            "type": "java",
+            "name": "Launch Hashmatique",
+            "request": "launch",
+            "mainClass": "Hashmatique",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestPuzzleJava",
+            "request": "launch",
+            "mainClass": "TestPuzzleJava",
+            "projectName": "CodingDojo_7aad49ce"
+        },
+        {
+            "type": "java",
             "name": "Launch TestBasics",
             "request": "launch",
             "mainClass": "TestBasics",
