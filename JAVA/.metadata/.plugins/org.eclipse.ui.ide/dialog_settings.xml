@@ -75,6 +75,9 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\malon\OneDrive\Documents\CodingDojo\JAVA_Stack\MalonW-Assignments\03-java-spring\02-spring-data-i\04-lookify\Lookify"/>
+			<item value="C:\Users\malon\OneDrive\Documents\CodingDojo\JAVA_Stack\MalonW-Assignments\03-java-spring\03-spring-data-ii\03-dojos-and-ninjas"/>
+			<item value="C:\Users\malon\OneDrive\Documents\CodingDojo\JAVA_Stack\MalonW-Assignments\03-java-spring\01-spring-fundamentals"/>
 			<item value="C:\Users\malon\OneDrive\Documents\CodingDojo\JAVA\MalonW-Assignments\03-java-spring\01-spring-fundamentals\04-display-date"/>
 			<item value="C:\Users\malon\OneDrive\Documents\CodingDojo\JAVA\MalonW-Assignments\03-java-spring\01-spring-fundamentals\02-getting-familiar-with-routing\Routing"/>
 		</list>
